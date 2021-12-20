@@ -1,4 +1,4 @@
-package com.zxl.dailypractice.Io;
+package com.zxl.dailypractice.io;
 
 import java.io.IOException;
 import java.nio.file.Files;
