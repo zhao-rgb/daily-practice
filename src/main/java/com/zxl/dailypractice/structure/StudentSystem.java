@@ -1,4 +1,4 @@
-package com.zxl.dailypractice;
+package com.zxl.dailypractice.structure;
 
 import java.util.ArrayList;
 import java.util.List;
