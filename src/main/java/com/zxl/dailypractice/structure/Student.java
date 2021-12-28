@@ -1,4 +1,4 @@
-package com.zxl.dailypractice;
+package com.zxl.dailypractice.structure;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
