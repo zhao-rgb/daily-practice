@@ -1,7 +1,5 @@
 package com.zxl.dailypractice.java.promblem;
 
-import static java.lang.Math.sqrt;
-
 /**
  * @author zhao
  * @className Hello
@@ -11,15 +9,28 @@ import static java.lang.Math.sqrt;
  **/
 public class Hello {
     public static void main(String[] args) {
-//        int m = 7;
-//        float x= 2.5F,y=4.7f;
-//        System.out.println((int)(x+y)%2/4);
-
-        float x=3.5f,y=2.5f;
-        System.out.println((int)x%(int)y);
-
-        float m=10.5f,n=4.0f,k;
-        System.out.println(sqrt((double)n)*1.2/2+m);
-        System.out.println(2.3+4.8);
+        A c = new C();
+        System.out.println(c.getNumber(10));
+//        System.out.println(c.f(3,5));
+//        System.out.println(c.f(3.0,5.0));
     }
+}
+
+class A{
+//    double f(double x,double y){
+//        return x+y;
+//    }
+    public int getNumber(int a){
+        return a+1;
+    }
+}
+
+class C extends A{
+    @Override
+    public int getNumber(int a) {
+        return a+100;
+    }
+//    double f(int x,int y){
+//        return x*y;
+//    }
 }
