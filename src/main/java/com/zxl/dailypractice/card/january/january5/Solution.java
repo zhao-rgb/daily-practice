@@ -1,4 +1,4 @@
-package com.zxl.dailypractice.card.January.january5;
+package com.zxl.dailypractice.card.january.january5;
 
 /**
  * @author zhao
