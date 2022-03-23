@@ -1,0 +1,266 @@
+1：计算机概述
+	计算机发展
+	计算机硬件
+	计算机软件
+	计算机语言
+	java语言：跨平台性，安全性
+		James Gosling:java之父
+
+2：常用控制台命令
+	盘符 冒号 回车：进入到某个盘下
+	cd 单级目录
+	cd 多级目录
+	dir 显示目录下的所有文件
+	md 创建目录
+	rd 删除目录
+	cls 清屏
+	exit 退出
+	补充：rd -s删除的时候询问
+	      rd -q -s直接删除不询问
+
+3：JVM，JRE,JDK三者的区别和关系
+	JVM:java虚拟机，保证了java语言的跨平台型，为不同的操作系统提供不同的JVM
+	JRE:运行时环境，包括JVM和核心类库
+	JDK：开发工具包，包括JRE和开发工具
+
+4：JDK的下载，安装和卸载
+
+5：环境配置
+	path：为了能让exe文件能在任意目录下运行
+	方式：
+	  (1)在环境变量的path后添加javac和java所在的目录，添加在最前面，有多个会按顺序查找
+	  (2)创建环境变量JAVA_HOME为exe目录所在，path:%JAVA_HOME%\bin;原来的路径
+
+	classpath：为了让class文件能在任意指定目录下运行
+
+6：HelloWorld案例
+
+7：
+8：
+9：
+10：注释
+	注释分类：
+		单行注释  //
+		多行注释  /*   */
+		文档注释  /**  */
+
+	注释的作用：
+		解释说明文档，提高代码的可阅读性
+		帮助调试程序
+
+11：关键字
+	java语言中保留的具有特殊含义的单词
+
+	常见关键字
+
+	注意事项：
+		goto和const是java中的关键字保留，但是并未使用
+
+
+12：标识符
+	标识符是用于给类，接口，方法，变量命名的符号
+
+	组成规则：
+		英文大小写字母
+		数字
+		_和$
+	注意事项：
+		不能以数字开头
+		不能是关键字
+		严格区分大小写
+
+	常见命名规则：
+		包：就是文件夹，用于解决相同类名的问题
+			全部小写
+
+		类或者接口：每一个首字母大写(有一部分API中提供的类或接口早期命名不规范)
+
+		方法或者变量：首个单词小写，其余大写
+
+		常量：大写，多个单词之间用_连接
+
+
+
+
+1：常量
+	自定义常量：引用类型
+	字面值常量：
+		字符串
+		字符
+		整型
+		小数：浮点型
+		null：空常量
+
+2：类型转换
+	进制：
+		二进制：0b
+		八进制：0
+		十六进制：0x
+
+	其他进制到十进制：
+		系数*底数^权次方之和
+
+	十进制到其他进制：
+		除基取余直到商为零，余数反转
+
+	8421码：快速转换
+
+3：有符号数计算机表示
+	原码：二进制表示
+		正数：符号位0	负数：符号位1
+	反码：正数与原码一致	负数符号位为1，其他位按位取反
+	补码：正数与原码一致	负数由反码加1
+
+
+4：基本数据类型
+	四类八种：
+		byte	1
+		short	2
+		int	4
+		long	8
+
+		boolean	1
+		char	2
+		float	4
+		double	8
+
+	默认整型是int，浮点型是double
+	定义long型：末尾加l或者L(推荐都用大写的)
+	定义float型：末尾加f或者F
+
+	引用数据类型：
+		数组，类，接口
+
+5：变量
+	程序执行过程值会发生变化的量
+
+6：类型转换
+	隐式类型转换
+		byte，short，char->int->long->float->double
+
+		long为什么能转换成float：
+			  float底层存储结构不同
+			  表示的数据范围float更大
+		注意事项：常量相加，先加再开空间
+			  变量相加，先开空间再加
+	强制类型转换
+		不建议
+
+7：赋值运算符
+8：算术运算符
+	+-*/%	++ --：自增自减放在前面后面的问题
+	+= -= *= /= %=
+9：关系运算符
+	>< == >= <= !=
+10：逻辑运算符
+	& | ! ^
+	&& ||：具有短路效果
+
+
+
+
+1：异常
+	异常概述：异常是程序出现不正常的情况
+		  班长骑自行车旅游：三种情况
+	异常分类：
+		Throwable
+		     |---Error
+		     |---Exception
+			  |---RuntimeException  运行时异常 可以处理，也可以不处理  需要改代码
+			  |---非RuntimeException 编译时异常  必须处理，否则不能通过编译
+
+	异常处理方式：
+		JVM默认处理的方式：将发生异常的信息输出控制台，并结束程序
+		A：try...catch...finally...
+			多种变形使用：try必须和catch和finally中的一个组合使用
+		finally的特点：被finally控制的语句体都会执行
+			注意事项：finally控制的语句只要在JVM退出之前都会执行
+
+		B：throws
+			不能处理的异常继续抛出，一般会在main方法中得到解决，即main方法不在抛			出给JVM
+
+	异常的注意事项：
+		JDK7的新特性：
+			catch(异常1 | 异常2 |...  e):多个异常
+		try...catch：有多个catch语句时，范围最广阔的异常必须放在最后一个
+
+		单个异常：子类只能抛出与父类相同异常或者属于父类异常的子异常
+		多个异常：子类只能抛出与父类相同异常或者属于父类异常的子异常集合
+		没有异常：父类没有抛出异常，子类也不能抛出异常
+
+	自定义异常：
+		必须继承自RuntimeException或者Exception类
+	案例：抛出自定义异常
+		public class MyException extends Exception {
+			public MyException() {
+				super();
+			}
+			public MyException(String message) {
+				super(message);//带输出信息的构造方法
+			}
+		}
+
+	面试题：final，finalize，finally的区别
+			final：表示最终的修饰符
+				修饰类：类不能被继承
+				修饰成员方法：方法不能被重写
+				修饰成员变量：变量成为常量
+			finalize：Object类的方法，用于调用垃圾回收器回收垃圾，与System类的				gc()方法功能一样
+			finally：与异常处理的try...catch...finally配合使用，异常中总是会执行				的代码
+
+		throws和throw的区别：
+			throws：方法声明上，后面跟的是类名，可以抛出多个异常用逗号隔开，表示				发生异常的可能性
+			throw：方法中最后，后面跟的是只有一个对象，表示发生某种具体的异常
+
+		finally中的语句会在return之前还是之后执行
+			return语句的特点，构成一个返回路径
+
+2：File类
+	概述：用于表示文件或者文件夹的类
+
+	构造方法：
+		public File(String pathname)
+		public File(String parent,String filename)
+		public File(File file, String name)
+		public File(URI uri):统一资源定位符，可以从通过网络路径创建文件或者文件夹对					象
+
+	成员方法：
+		创建功能：
+			public boolean createNewFile():创建新文件
+			public boolean mkdir():创建单个目录
+			public boolean mkdirs():创建多层目录
+
+		删除功能：
+			public boolean delete():删除执行文件或文件夹
+			删除的特点：删除不进回收站，直接删除
+
+		判断功能：
+			public boolean isDirectory():判断是否为文件夹
+			public boolean isFile():判断是否为文件
+			public boolean exists():判断是否存在
+			public boolean canWrite():是否可写
+			public boolean canRead():是否可读
+			public boolean isHidden():是否隐藏
+		重命名功能：
+			public boolean rename(String dest):重命名，路径相同重命名，路径不同						剪切后重命名
+
+		获取功能：
+			public String getAbsolutePath():
+			public String getName():
+			public String getPath():
+			public int length():获取文件大小
+			public long lastModified():最近修改时间的毫秒值
+		高级获取功能：
+			public String[] list():字符数组存储某个目录下所有文件和文件夹
+			public File[] listFile():文件数组存储某个目录下所有文件和文件夹
+
+		文件过滤器：
+			public String[] list(fileNameFilter filter):
+			public File[] listFile(fileNameFilter filter):
+				fileNameFilter的匿名内部类，重写accept方法
+					new fileNameFilter(){
+					 public boolean accept(File dir,String name){
+				return new file().isFile() && name.endswit(".jpg");
+					 }
+					}
+		案例：输出某目录下所有JPG结尾的文件
