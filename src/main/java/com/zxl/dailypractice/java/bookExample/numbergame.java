@@ -1,4 +1,4 @@
-package com.zxl.dailypractice.java;
+package com.zxl.dailypractice.java.bookExample;
 
 import java.util.Random;
 import java.util.Scanner;
