@@ -1,4 +1,4 @@
-package com.zxl.dailypractice.java;
+package com.zxl.dailypractice.java.bookExample;
 
 /**
  * @author zhao
@@ -10,7 +10,7 @@ package com.zxl.dailypractice.java;
 public class Land {
     public static void main(String[] args) {
         Village.setWaterAmount(200);
-        int leftWater=Village.waterAmount;
+        int leftWater= Village.waterAmount;
         System.out.println("水井中有"+leftWater+"升水");
         Village zhaoZhuang,maJiaHeZi;
         zhaoZhuang=new Village("赵庄");
