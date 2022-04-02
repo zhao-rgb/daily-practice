@@ -37,7 +37,6 @@ public class Solution {
     public static void main(String[] args) {
         Solution solution = new Solution();
         int[] arr = {3,1,3,6};
-        boolean b = solution.canReorderDoubled(arr);
-        System.out.println(b);
+        System.out.println(solution.canReorderDoubled(arr));
     }
 }
