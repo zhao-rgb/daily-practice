@@ -28,5 +28,6 @@
 * [图片压缩网站squoosh](https://squoosh.app/)
 * [命名工具](https://unbug.github.io/codelf/)
 * [程序员盒子](https://www.coderutil.com/)
+* [正则表达式](https://ihateregex.io/)
 
 ## [自己整理的面试题](https://shimo.im/docs/gXqmelN14niKl2qo)
