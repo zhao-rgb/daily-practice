@@ -1,6 +1,6 @@
 package com.zxl.dailypractice.card.april.april14;
 
-import java.util.Arrays;
+import java.util.*;
 
 /**
  * @author zhao
@@ -21,8 +21,22 @@ public class Solution {
 
     public static void main(String[] args) {
         Solution solution = new Solution();
-        int[][] b = {{1,2,3},{2,3,4}};
+        int[][] b = {{1, 2, 3}, {2, 3, 4}};
         int i = solution.maximumWealth(b);
         System.out.println(i);
+
+        //有一个字符串List，如下代码所示。续写代码，将words中的元素再按照字符拆分，合并成一个数组，然后字符去重，最终得到["h", "e", "l", "o", "w", "r", "d"]
+        List<String> words = new ArrayList<>();
+        words.add("hello");
+        words.add("world");
+        Set set = new LinkedHashSet();
+        for (int a = 0; a < words.size(); a++) {
+            String s = words.get(a);
+            String[] split = s.split("");
+            for (String ss : split) {
+                set.add(ss);
+            }
+        }
+        System.out.println(set);
     }
 }
