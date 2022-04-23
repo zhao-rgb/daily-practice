@@ -22,6 +22,8 @@
 * Ctrl+D 复制一行
 * Ctrl+Y 删除一行
 * Ctrl+P 参数提示
+* Ctrl + Ctrl(按住) + ↓ 多光标选择
+* 选中目标字符，然后Ctrl+shift+alt+j 多光标选择
 
 ## 工具
 * [Java api](https://overapi.com/java)
@@ -29,5 +31,6 @@
 * [命名工具](https://unbug.github.io/codelf/)
 * [程序员盒子](https://www.coderutil.com/)
 * [正则表达式](https://ihateregex.io/)
+* [正则表达式1](http://tool.rbtree.cn/)
 
 ## [自己整理的面试题](https://shimo.im/docs/gXqmelN14niKl2qo)
