@@ -37,5 +37,7 @@
 * [图形展示](https://pythontutor.com/)
 * [Java 全栈知识体系](https://pdai.tech/)
 * [牛客网](https://www.nowcoder.com/)
+* [stackoverflow](https://stackoverflow.com/)
+* [yaml转properties](https://www.toyaml.com/index.html)
 
 ## [自己整理的面试题](https://shimo.im/docs/gXqmelN14niKl2qo)
