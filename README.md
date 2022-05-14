@@ -41,4 +41,7 @@
 * [yaml转properties](https://www.toyaml.com/index.html)
 * [Cron表达式生成器](https://qqe2.com/cron)
 
+## 最近的学习
+* [算法学习](https://www.bilibili.com/video/BV1y34y1v78b?p=14)
+
 ## [自己整理的面试题](https://shimo.im/docs/gXqmelN14niKl2qo)
