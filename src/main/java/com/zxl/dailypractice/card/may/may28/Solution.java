@@ -10,7 +10,7 @@ import java.util.Deque;
  * @Date 2022/5/28
  * @Version 1.0
  **/
-//删除最外层的括号    https://leetcode.cn/problems/remove-outermost-parentheses/
+//删除最外层的括号    https://leetcode.cn/problems/remove-outermost-parentheses/solution/by-fuxuemingzhu-k7xg/
 public class Solution {
     public String removeOuterParentheses(String s) {
         StringBuffer res = new StringBuffer();
