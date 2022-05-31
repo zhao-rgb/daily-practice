@@ -30,6 +30,7 @@
 * [图片压缩网站squoosh](https://squoosh.app/)
 * [命名工具](https://unbug.github.io/codelf/)
 * [程序员盒子](https://www.coderutil.com/)
+* [程序员导航](https://cxy521.com/)
 * [正则表达式](https://ihateregex.io/)
 * [正则表达式1](http://tool.rbtree.cn/)
 * [数据可视化](https://visualgo.net/zh)
