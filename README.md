@@ -22,6 +22,11 @@
 * Ctrl+D 复制一行
 * Ctrl+Y 删除一行
 * Ctrl+P 参数提示
+* Ctrl+N 快速查找类和文件
+* Ctrl+ALT+L 代码格式化,自动排版
+* Tab 多行右移 
+* Shift+Tab 多行左移
+-------
 * Ctrl + Ctrl(按住) + ↓ 多光标选择
 * 选中目标字符，然后Ctrl+shift+alt+j 多光标选择
 
@@ -39,6 +44,7 @@
 * [Java 全栈知识体系](https://pdai.tech/)
 * [牛客网](https://www.nowcoder.com/)
 * [stackoverflow](https://stackoverflow.com/)
+* [stackoverflow中文版](https://stackoom.com/en/)
 * [yaml转properties](https://www.toyaml.com/index.html)
 * [Cron表达式生成器](https://qqe2.com/cron)
 * [菜鸟教程](https://www.runoob.com/)
