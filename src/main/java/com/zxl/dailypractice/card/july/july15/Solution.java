@@ -8,5 +8,7 @@ package com.zxl.dailypractice.card.july.july15;
 public class Solution {
     public static void main(String[] args) {
         Solution solution = new Solution();
+        String a = "";
+        long b = 8L;
     }
 }
