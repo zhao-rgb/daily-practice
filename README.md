@@ -49,6 +49,7 @@
 * [Cron表达式生成器](https://qqe2.com/cron)
 * [菜鸟教程](https://www.runoob.com/)
 * [maven仓库](https://mvnrepository.com/)
+* [实习](https://shimo.im/docs/KlkKVgx9dlCZxzqd)
 
 ## 最近的学习
 * [算法学习](https://www.bilibili.com/video/BV1y34y1v78b?p=14)
