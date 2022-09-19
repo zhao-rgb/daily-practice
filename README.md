@@ -50,10 +50,11 @@
 * [菜鸟教程](https://www.runoob.com/)
 * [maven仓库](https://mvnrepository.com/)
 * [实习](https://shimo.im/docs/KlkKVgx9dlCZxzqd)
+* [Java代码生成平台](https://java.bejson.com/generator/)
+* [curl命令转代码](https://tool.lu/curl/)
+* [Chrome插件](https://www.extfans.com/)
 
 ## 最近的学习
 * [算法学习](https://www.bilibili.com/video/BV1y34y1v78b?p=14)
 
 ## [自己整理的面试题](https://shimo.im/docs/gXqmelN14niKl2qo)
-
-##
