@@ -14,10 +14,11 @@ import java.io.FileOutputStream;
  * @date: 2022/9/27
  * @desc:
  **/
+//生成文件
 public class Solution {
     public static void main(String[] args) throws Exception {
         System.getProperty("user.home");
-        String fileContent = "h";
+        String fileContent = "xxx";
         String filePath = System.getProperty("user.dir") +"/files/";
         String fileName = "dd.txt";
         saveFile(fileContent.getBytes(),filePath,fileName);

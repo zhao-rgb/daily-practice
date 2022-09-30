@@ -1,8 +1,5 @@
 package com.zxl.dailypractice.card.two.September.September29;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
-
 /**
  * @author: zhaoxl
  * @date: 2022/9/28
@@ -14,13 +11,15 @@ public class Solution {
                 "\t\"msg\": \"\",\n" +
                 "\t\"code\": \"0000\",\n" +
                 "\t\"data\": {\n" +
-                "\t\t\"fileContent\": \"ss2s22\"\n" +
-                "\t},\n" +
-                "\t\"tip\": \"成功\"\n" +
+                "\t\t\"fileContent\":\"w2w2w2\"},\"tip\": \"成功\"\n" +
                 "}";
-        JSONObject getcurdevcfgfile = JSON.parseObject(a);
-        System.out.println(getcurdevcfgfile);
-        String fileContent =getcurdevcfgfile.getJSONObject("data").getString("fileContent");
+        String fileContent = a.substring(a.indexOf("fileContent", 1),
+                        a.indexOf("\"},\"tip\"", 1))
+                .replaceAll("fileContent\":\"", "");
         System.out.println(fileContent);
+//        JSONObject getcurdevcfgfile = JSON.parseObject(a);
+//        System.out.println(getcurdevcfgfile);
+//        String fileContent =getcurdevcfgfile.getJSONObject("data").getString("fileContent");
+//        System.out.println(fileContent);
     }
 }
