@@ -11,11 +11,11 @@ public class Solution {
                 "\t\"msg\": \"\",\n" +
                 "\t\"code\": \"0000\",\n" +
                 "\t\"data\": {\n" +
-                "\t\t\"fileContent\":\"w2w2w2\"},\"tip\": \"成功\"\n" +
+                "\t\t\"fileContent\":\"fileContent\":\"w2w2w2\"},\"tip\": \"成功\"\n" +
                 "}";
         String fileContent = a.substring(a.indexOf("fileContent", 1),
                         a.indexOf("\"},\"tip\"", 1))
-                .replaceAll("fileContent\":\"", "");
+                .replaceFirst("fileContent\":\"", "");
         System.out.println(fileContent);
 //        JSONObject getcurdevcfgfile = JSON.parseObject(a);
 //        System.out.println(getcurdevcfgfile);
