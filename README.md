@@ -53,6 +53,9 @@
 * [Java代码生成平台](https://java.bejson.com/generator/)
 * [curl命令转代码](https://tool.lu/curl/)
 * [Chrome插件](https://www.extfans.com/)
+* [在线工具合集](https://pdai.tech/md/devops/tool/tool-list-overview.html)
+* [Properties YAML 互转](https://www.toyaml.com/index.html)
+* [贴图](https://carbon.now.sh/)
 
 ## 最近的学习
 * [算法学习](https://www.bilibili.com/video/BV1y34y1v78b?p=14)

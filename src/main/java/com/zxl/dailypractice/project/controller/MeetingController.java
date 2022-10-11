@@ -2,6 +2,8 @@ package com.zxl.dailypractice.project.controller;
 
 import com.zxl.dailypractice.project.entity.Meetings;
 import com.zxl.dailypractice.project.mapper.MeetingMapper;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,17 +19,21 @@ import java.util.List;
  **/
 @RestController
 @Slf4j
+@Api
 public class MeetingController {
+    //swagger 地址：  http://localhost:8081/swagger-ui/index.html
     @Autowired
     private MeetingMapper meetingMapper;
 
     // 查询全部部门
+    @ApiOperation("meeting")
     @GetMapping("/meeting")
     public List<Meetings> getDepartments(){
         return meetingMapper.getDepartments();
     }
 
     // 查询全部部门
+    @ApiOperation("meetingz")
     @GetMapping("/meetingz")
     public String hello(){
         String cfgdeployBody = "";

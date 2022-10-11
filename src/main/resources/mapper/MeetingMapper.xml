@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zxl.dailypractice.project.mapper.MeetingMapper">
+
+    <select id="getDepartments" resultType="com.zxl.dailypractice.project.entity.Meetings">
+        select * from meetings;
+    </select>
+
+
+</mapper>

@@ -41,8 +41,6 @@ public class Solution {
         String paradef = "2s2";
         log.info("paradef={}", paradef);
 
-
-
         System.out.println(paradef);
         String body = "2";
         String code = "";
