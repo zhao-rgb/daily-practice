@@ -8,6 +8,7 @@ import java.util.Deque;
  * @date: 2022/10/9
  * @desc:
  **/
+//括号的分数       https://leetcode.cn/problems/score-of-parentheses/
 public class Solution {
     public int scoreOfParentheses(String s) {
         Deque<Integer> d = new ArrayDeque<>();
@@ -22,5 +23,4 @@ public class Solution {
         }
         return d.peekLast();
     }
-
 }
