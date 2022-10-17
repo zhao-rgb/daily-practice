@@ -9,5 +9,5 @@ import org.springframework.web.multipart.MultipartFile;
  * @desc:
  **/
 public interface FileService {
-    public FileReturn uploadFile(MultipartFile multipartFile);
+    FileReturn uploadFile(MultipartFile multipartFile);
 }
