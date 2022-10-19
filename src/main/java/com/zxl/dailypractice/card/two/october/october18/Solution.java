@@ -2,7 +2,7 @@ package com.zxl.dailypractice.card.two.october.october18;
 
 /**
  * @author: zhaoxl
- * @date: 2022/10/17
+ * @date: 2022/10/18
  * @desc:
  **/
 public class Solution {
