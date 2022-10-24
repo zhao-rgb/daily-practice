@@ -37,7 +37,7 @@ import java.util.List;
  **/
 @RestController
 @Slf4j
-@Api(tags = "测试项目")
+@Api(tags = "会议项目")
 public class MeetingController {
     //swagger 地址：  http://localhost:8081/swagger-ui/index.html
     //swagger 地址：  http://localhost:8081/doc.html

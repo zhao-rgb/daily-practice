@@ -17,12 +17,12 @@
 * [Java反射](https://github.com/zhao-rgb/daily-practice/blob/main/src/main/java/com/zxl/dailypractice/reflect)
 * [排序](https://github.com/zhao-rgb/daily-practice/blob/main/src/main/java/com/zxl/dailypractice/sort)
 * [Java线程](https://github.com/zhao-rgb/daily-practice/blob/main/src/main/java/com/zxl/dailypractice/thread)
-
+* [自己的测试](https://github.com/zhao-rgb/daily-practice/blob/main/src/main/java/com/zxl/dailypractice/project)
 ## idea快捷键
 * Ctrl+D 复制一行
 * Ctrl+Y 删除一行
 * Ctrl+P 参数提示
-* Ctrl+N 快速查找类和文件
+* Ctrl+N 快速查找类和文件 Ctrl+Shift+R
 * Ctrl+ALT+L 代码格式化,自动排版
 * Tab 多行右移 
 * Shift+Tab 多行左移
