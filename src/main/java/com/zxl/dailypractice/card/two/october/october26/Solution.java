@@ -1,4 +1,4 @@
-package com.zxl.dailypractice.card.two.october.october25;
+package com.zxl.dailypractice.card.two.october.october26;
 
 /**
  * @author: zhaoxl
@@ -7,6 +7,6 @@ package com.zxl.dailypractice.card.two.october.october25;
  **/
 public class Solution {
     public static void main(String[] args) {
-        Solution solution = new Solution();
+        //todo
     }
 }
