@@ -1,4 +1,4 @@
-package com.zxl.dailypractice.card.two.december.December2;
+package com.zxl.dailypractice.card.one.december.December2;
 
 import java.util.Arrays;
 import java.util.HashMap;
