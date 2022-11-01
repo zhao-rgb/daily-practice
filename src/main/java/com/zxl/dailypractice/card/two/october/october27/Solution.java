@@ -1,7 +1,6 @@
 package com.zxl.dailypractice.card.two.october.october27;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -39,10 +38,15 @@ public class Solution {
 //            }
 //        }
 
-        Map<String, Object> a = null;
-        List<Map<String, Object>> datalist = new ArrayList<>();
-        Map<String, Object> resultMap = a;
-        System.out.println(datalist.add(resultMap));
+//        Map<String, Object> a = null;
+//        List<Map<String, Object>> datalist = new ArrayList<>();
+//        Map<String, Object> resultMap = a;
+//        System.out.println(datalist.add(resultMap));
 
+        Map<String, String[]> stringStringHashMap = new HashMap<>();
+        String colenname = "赵肖了,dd,zz,wqy";
+        String[] split = colenname.split(",");
+        stringStringHashMap.put("colenname",split);
+        System.out.println(stringStringHashMap);
     }
 }
