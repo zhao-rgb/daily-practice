@@ -15,6 +15,7 @@ public class Solution {
 //        String paradef = "{\"port\":{\"type\":\"string\",\"description\":\"端口名称\",\"required\":true,\"value\":\"11\"}}";
         System.out.println(paradef);
         JSONObject jsonObject = JSONObject.parseObject(paradef);
+        System.out.println(jsonObject);
         String body = "";
         for (String key : jsonObject.keySet()) {
             JSONObject childObject = jsonObject.getJSONObject(key);
