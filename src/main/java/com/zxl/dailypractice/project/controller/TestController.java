@@ -3,11 +3,18 @@ package com.zxl.dailypractice.project.controller;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.zxl.dailypractice.project.constant.ResourceConstant;
+import com.zxl.dailypractice.project.controller.resp.GetDiaByImportFileResp;
 import com.zxl.dailypractice.project.exception.WformException;
+import com.zxl.dailypractice.project.util.FileUtil;
 import com.zxl.dailypractice.project.util.ObjectUtil;
+import com.zxl.dailypractice.project.util.ResponseResult;
+import com.zxl.dailypractice.project.util.ResultCode;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.poi.hssf.usermodel.HSSFCellStyle;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
@@ -15,15 +22,19 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.xssf.usermodel.XSSFCellStyle;
 import org.apache.poi.xssf.usermodel.XSSFColor;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.easy.excel.ExcelContext;
+import org.easy.excel.result.ExcelImportResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.net.URLEncoder;
-import java.util.HashMap;
-import java.util.Map;
+import java.text.SimpleDateFormat;
+import java.util.*;
+
 
 /**
  * @author: zhaoxl
@@ -108,6 +119,62 @@ public class TestController {
             log.error("程序出现异常",e);;
         }
     }
+
+    @PostMapping("/getDiaByImportFile")
+    @ApiOperation(notes = "1.2.7导入文件获取专线", value = "1.2.7导入文件获取专线")
+    ResponseResult getDiaByImportFile(@RequestParam("file") MultipartFile file) {
+        try {
+            String filePath = ResourceConstant.FILE_PATH_RES;
+            String uuid = UUID.randomUUID().toString().replace("-", "");
+            String sysdate = new SimpleDateFormat(ResourceConstant.TIME_FORMAT_BUNCH.YYYYMMDDHHMISS.value).format(new Date());
+            String fileName = "getDiaByImportFile_" + sysdate + "_" + uuid + ".xlsx";
+            FileUtil.saveFileDoNotCloseStream(file.getInputStream(),filePath,fileName);
+            String impCirCmInfoExcelId = "getDiaByImportFile";
+            ExcelImportResult result = new ExcelContext(ResourceConstant.EXCEL_CONFIG_XML).readExcel(impCirCmInfoExcelId, 0,
+                    file.getInputStream());
+            List<GetDiaByImportFileResp> list = Collections.synchronizedList(result.getListBean());
+            List<Map<String,Object>> resultMapList = getDiaByImportFile(list);
+            return ResponseResult.success(resultMapList);
+        } catch (Exception e) {
+            log.info(e.getMessage());
+            return ResponseResult.failure(ResultCode.USER_SIGN_IN_FAIL, e.getMessage());
+        }
+    }
+
+    public List<Map<String, Object>> getDiaByImportFile(List<GetDiaByImportFileResp> cirCmInfoList) {
+        List<Map<String, Object>> resultMapList = new ArrayList<Map<String, Object>>();
+        Map<String, Object> dataMap = new HashMap<String, Object>();
+        if (CollectionUtils.isEmpty(cirCmInfoList)) {
+            dataMap.put("errorMsg", "要导入的数据为空！");
+            return resultMapList;
+        }
+        for (int index = 0; index < cirCmInfoList.size(); index++) {
+            int excelRowNum = index + 2;
+            //todo 最重要的
+            dataMap = new HashMap<String, Object>();
+            GetDiaByImportFileResp model = cirCmInfoList.get(index);
+            String oltDevip = model.getOltDevip();
+            String subresid = model.getSubresid();
+            dataMap.put("oltDevip", oltDevip);
+            dataMap.put("subresid", subresid);
+            if (StringUtils.isBlank(oltDevip)) {
+                dataMap.put("errorMsg", "第" + excelRowNum + "oltDevip为空！");
+                dataMap.put("errorCode", "1");
+                resultMapList.add(dataMap);
+                continue;
+            }
+            if (StringUtils.isBlank(subresid)) {
+                dataMap.put("errorMsg", "第" + excelRowNum + "subresid为空！");
+                dataMap.put("errorCode", "1");
+                resultMapList.add(dataMap);
+                continue;
+            }
+            resultMapList.add(dataMap);
+        }
+        return resultMapList;
+    }
+
+
 
     public File matrixExport(String webappPath,String wintitle, Integer start, Integer limit, Map<String, Object> map) {
 
