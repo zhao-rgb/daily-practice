@@ -13,7 +13,7 @@ import java.util.Map;
 //统计一致字符串的数目       https://leetcode.cn/problems/count-the-number-of-consistent-strings/
 public class Solution {
     public static void main(String[] args) {
-//        System.out.println(System.getProperty("usr.home", "/slview"));
+        System.out.println(System.getProperty("usr.home", "/slview"));
         List<Map<String, Object>> resultMapList = new ArrayList<>();
         Map<String, Object> dataMap = new HashMap<String, Object>();
         dataMap.put("1","赵肖龙");
