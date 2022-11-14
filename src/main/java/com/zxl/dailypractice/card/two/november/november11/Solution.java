@@ -24,4 +24,22 @@ public class Solution {
         }
         return sum1 == sum2;
     }
+
+    public static void main(String[] args) {
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 2; j++) {
+                if (i == 1){
+                    break;
+                }
+                System.out.println(i);
+            }
+
+        }
+
+    }
+
+//    cmUniNetCutOverTask.setTaskcreateuser("username");
+//            cmUniNetCutOverTask.setApplynetuserid("netuserid");
+//            cmUniNetCutOverTask.setCanapprovenamelist("username");
+//            cmUniNetCutOverTask.setCanapprovenetuseridlist("netuserid");
 }
