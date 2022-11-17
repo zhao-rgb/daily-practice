@@ -1,7 +1,5 @@
 package com.zxl.dailypractice.card.two.november.november15;
 
-import org.apache.commons.lang3.StringUtils;
-
 import java.util.Arrays;
 
 /**
@@ -26,12 +24,5 @@ public class Solution {
             }
         }
         return res;
-    }
-
-    public static void main(String[] args) {
-        String a = "hello";
-        if ("a".equals(a) && StringUtils.isBlank(a)){
-
-        }
     }
 }
