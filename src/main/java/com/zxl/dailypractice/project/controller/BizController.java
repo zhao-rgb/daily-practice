@@ -4,10 +4,12 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageHelper;
 import com.zxl.dailypractice.project.controller.req.GetsubTaskListReq;
+import com.zxl.dailypractice.project.mapper.MeetingMapper;
 import com.zxl.dailypractice.project.util.ResponseResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,6 +28,9 @@ import java.util.Map;
 @Slf4j
 @Api(tags = "biz测试项目")
 public class BizController {
+
+    @Autowired
+    private MeetingMapper meetingMapper;
 
     @ApiOperation("分页")
     @PostMapping ("/fen")

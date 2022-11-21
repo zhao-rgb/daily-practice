@@ -27,6 +27,13 @@ mybatis:
   type-aliases-package: com.zxl.dailypractice.project.entity       # 所有POJO类所在包路径
   mapper-locations: classpath:mapper/*.xml      # mapper映射文件
 
+#pagehelper分页助手
+pagehelper:
+  helperDialect: mysql
+  reasonable: false
+  supportMethodsArguments: true
+  params: count=countSql
+
 
 
 

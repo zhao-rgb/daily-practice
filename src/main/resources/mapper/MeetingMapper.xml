@@ -6,7 +6,7 @@
 <mapper namespace="com.zxl.dailypractice.project.mapper.MeetingMapper">
 
     <select id="getDepartments" resultType="com.zxl.dailypractice.project.entity.Meetings">
-        select * from meetings;
+        select * from meetings
     </select>
 
 
