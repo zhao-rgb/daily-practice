@@ -36,6 +36,8 @@ public class Solution {
                 .replace("<BODY>", getCfgdeployBodyz())
                 .replace("<DeviceIP>", "s2ksk2");
         System.out.println(jsonParam);
+
+        //todo
     }
 
 
