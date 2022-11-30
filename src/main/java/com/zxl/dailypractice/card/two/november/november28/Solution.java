@@ -33,7 +33,7 @@ public class Solution {
 //                        code = "";
 //                    }
                 } else {
-                    if (key.equals("ipv4")) {
+                    if ("ipv4".equals(key)) {
                         code = "hello";
                     } else {
                         code = "";
