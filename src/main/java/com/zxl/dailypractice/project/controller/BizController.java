@@ -51,4 +51,12 @@ public class BizController {
         map.put("records", jsonArray);
         return ResponseResult.success(map);
     }
+
+    @ApiOperation("test")
+    @PostMapping ("/test")
+    public ResponseResult test(){
+        log.info("hello");
+        List<Map<String, Object>> departmentz = meetingMapper.getDepartmentz();
+        return ResponseResult.success(departmentz);
+    }
 }

@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author: zhaoxl
@@ -16,4 +17,7 @@ import java.util.List;
 public interface MeetingMapper {
     // 获取所有部门信息
     List<Meetings> getDepartments();
+
+    // 获取所有部门信息
+    List<Map<String,Object>> getDepartmentz();
 }

@@ -8,6 +8,9 @@
     <select id="getDepartments" resultType="com.zxl.dailypractice.project.entity.Meetings">
         select * from meetings
     </select>
+    <select id="getDepartmentz" resultType="java.util.Map">
+        select * from meetings
+    </select>
 
 
 </mapper>
