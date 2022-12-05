@@ -20,4 +20,6 @@ public interface MeetingMapper {
 
     // 获取所有部门信息
     List<Map<String,Object>> getDepartmentz();
+
+    int getDepartmentzo();
 }

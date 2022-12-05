@@ -3,6 +3,7 @@ package com.zxl.dailypractice.project.controller;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageHelper;
+import com.zxl.dailypractice.project.constant.TestEnum;
 import com.zxl.dailypractice.project.controller.req.GetsubTaskListReq;
 import com.zxl.dailypractice.project.mapper.MeetingMapper;
 import com.zxl.dailypractice.project.util.ResponseResult;
@@ -58,5 +59,12 @@ public class BizController {
         log.info("hello");
         List<Map<String, Object>> departmentz = meetingMapper.getDepartmentz();
         return ResponseResult.success(departmentz);
+    }
+
+    @ApiOperation("test1")
+    @PostMapping ("/test1")
+    public ResponseResult test1(){
+        log.info(TestEnum.TASK_APPLY.getCode());
+        return ResponseResult.success(meetingMapper.getDepartmentzo());
     }
 }

@@ -11,6 +11,9 @@
     <select id="getDepartmentz" resultType="java.util.Map">
         select * from meetings
     </select>
+    <select id="getDepartmentzo" resultType="java.lang.Integer">
+        select count(*) from meetings
+    </select>
 
 
 </mapper>
