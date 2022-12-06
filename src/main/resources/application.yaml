@@ -18,6 +18,13 @@ spring:
   #如果存在es密码，放开下面注释
   #spring.es.password=123456
 
+  #redis配置
+  redis:
+    database: 5
+    host: 121.5.129.115
+    post: 6379
+    password: 123
+
 ############################################################
 #
 # mybatis 配置

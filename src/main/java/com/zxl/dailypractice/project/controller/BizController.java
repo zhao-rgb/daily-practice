@@ -6,6 +6,8 @@ import com.github.pagehelper.PageHelper;
 import com.zxl.dailypractice.project.constant.TestEnum;
 import com.zxl.dailypractice.project.controller.req.GetsubTaskListReq;
 import com.zxl.dailypractice.project.mapper.MeetingMapper;
+import com.zxl.dailypractice.project.util.IpUtil;
+import com.zxl.dailypractice.project.util.RedisUtil;
 import com.zxl.dailypractice.project.util.ResponseResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -32,6 +35,9 @@ public class BizController {
 
     @Autowired
     private MeetingMapper meetingMapper;
+
+    @Autowired
+    private RedisUtil redis;
 
     @ApiOperation("分页")
     @PostMapping ("/fen")
@@ -66,5 +72,14 @@ public class BizController {
     public ResponseResult test1(){
         log.info(TestEnum.TASK_APPLY.getCode());
         return ResponseResult.success(meetingMapper.getDepartmentzo());
+    }
+
+    @ApiOperation("redis")
+    @PostMapping ("/redis")
+    public ResponseResult redis(String userId, HttpServletRequest request){
+        String userIp = IpUtil.getRequestIp(request);
+        redis.setnx("REDIS:"+userId+":"+userIp,userIp);
+        redis.increment("REDIS_COUNT:"+userId,1);
+        return ResponseResult.success();
     }
 }
