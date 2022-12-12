@@ -1,4 +1,4 @@
-package com.zxl.dailypractice.card.two.december.december9;
+package com.zxl.dailypractice.card.two.december.december12;
 
 /**
  * @author: zhaoxl
@@ -7,6 +7,7 @@ package com.zxl.dailypractice.card.two.december.december9;
  **/
 public class Solution {
     public static void main(String[] args) {
-        new Solution();
+        Solution solution = new Solution();
+        System.out.println("hello");
     }
 }
