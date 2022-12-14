@@ -1,6 +1,9 @@
 package com.zxl.dailypractice.project.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.zxl.dailypractice.project.controller.req.UpdateAlarmSubscribeRuleFilterReq;
+import com.zxl.dailypractice.project.controller.req.UpdateAlarmSubscribeRuleReq;
+import com.zxl.dailypractice.project.controller.resp.GetAlarmSubscribeRule2RedisResp;
 import com.zxl.dailypractice.project.entity.Meetings;
 import com.zxl.dailypractice.project.mapper.MeetingMapper;
 import com.zxl.dailypractice.project.service.FileService;
@@ -9,6 +12,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.io.ByteArrayResource;
@@ -28,7 +32,8 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.FileInputStream;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * @author: zhaoxl
@@ -54,13 +59,41 @@ public class MeetingController {
     // 查询全部部门
     @ApiOperation("查询全部部门")
     @GetMapping("/meetingz")
-    public String hello(){
-        String cfgdeployBody = "";
+    public List<Meetings> hello(){
+//        String cfgdeployBody = "";
+//        List<Meetings> departments = meetingMapper.getDepartments();
+//        for (Meetings a : departments){
+//            cfgdeployBody = getCfgdeployBody(a);
+//        }
+//        return cfgdeployBody;
         List<Meetings> departments = meetingMapper.getDepartments();
-        for (Meetings a : departments){
-            cfgdeployBody = getCfgdeployBody(a);
+        departments = departments.stream().sorted(Comparator.comparing(Meetings::getId))
+                .collect(Collectors.toList());
+        return departments;
+    }
+
+    // 查询全部部门
+    @ApiOperation("hhhtest")
+    @PostMapping("/hhhtest")
+    public GetAlarmSubscribeRule2RedisResp hhhtest(@RequestBody UpdateAlarmSubscribeRuleReq req){
+        //封装redis存储对象
+        GetAlarmSubscribeRule2RedisResp rule2RedisResp = new GetAlarmSubscribeRule2RedisResp();
+        BeanUtils.copyProperties(req,rule2RedisResp);
+        if(req.getFilterList()!=null&&req.getFilterList().size()>0){
+            List<Map<String,Object>> objects = new ArrayList<>();
+            Map<String,Object> paraMap = new HashMap<>();
+            for (UpdateAlarmSubscribeRuleFilterReq updateReq : req.getFilterList()) {
+                paraMap = new HashMap<>();
+                paraMap.put("fillterName",updateReq.getFilterName());
+                paraMap.put("filterType",updateReq.getFilterType());
+                paraMap.put("filterExpr",updateReq.getFilterExpr());
+                paraMap.put("isDelay",updateReq.getIsDelay());
+                paraMap.put("delayTime",updateReq.getDelayTime());
+                objects.add(paraMap);
+            }
+            rule2RedisResp.setFilterList(objects);
         }
-        return cfgdeployBody;
+        return rule2RedisResp;
     }
 
     @ApiOperation("上传文件")
@@ -138,4 +171,6 @@ public class MeetingController {
         restTemplate.setRequestFactory(requestFactory);
         return restTemplate;
     }
+
+
 }
