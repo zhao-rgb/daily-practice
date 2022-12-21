@@ -105,6 +105,8 @@ public class MeetingController {
         String token = request.getHeader("zy_token");
         System.out.println(token);
         System.out.println(de);
+        String fileSuffix = multipartFile.getOriginalFilename().substring(multipartFile.getOriginalFilename().lastIndexOf("."));
+        System.out.println(fileSuffix);
         return fileService.uploadFile(multipartFile);
     }
 
