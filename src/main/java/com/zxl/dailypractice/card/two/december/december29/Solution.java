@@ -1,4 +1,4 @@
-package com.zxl.dailypractice.card.two.december.december27;
+package com.zxl.dailypractice.card.two.december.december29;
 
 /**
  * @author: zhaoxl
@@ -8,6 +8,6 @@ package com.zxl.dailypractice.card.two.december.december27;
 public class Solution {
     public static void main(String[] args) {
         Solution solution = new Solution();
-        System.out.println("好烦");
+        System.out.println("好烦啊");
     }
 }
