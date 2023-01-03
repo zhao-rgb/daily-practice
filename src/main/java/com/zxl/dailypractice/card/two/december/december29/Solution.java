@@ -28,6 +28,5 @@ public class Solution {
         String afterShuffle = sb.toString();
         String result = afterShuffle.substring(5, 9);
         System.out.println(result);
-
     }
 }
