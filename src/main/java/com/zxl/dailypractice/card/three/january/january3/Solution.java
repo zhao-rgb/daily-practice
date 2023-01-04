@@ -7,6 +7,13 @@ package com.zxl.dailypractice.card.three.january.january3;
  **/
 public class Solution {
     public static void main(String[] args) {
-        System.out.println("hello ");
+        String roleIds = "[\"1676\",\"22\"]";
+        String[] split = roleIds.split(",");
+        for(String role : split){
+            String replace = role.replace("[", "")
+                    .replace("\"", "")
+                    .replace("]", "");
+            System.out.println(replace);
+        }
     }
 }
