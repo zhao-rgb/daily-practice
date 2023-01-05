@@ -15,5 +15,6 @@ public class Solution {
                     .replace("]", "");
             System.out.println(replace);
         }
+        System.out.println("hello");
     }
 }
