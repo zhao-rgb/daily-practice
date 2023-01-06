@@ -18,6 +18,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -81,5 +85,49 @@ public class BizController {
         redis.setnx("REDIS:"+userId+":"+userIp,userIp);
         redis.increment("REDIS_COUNT:"+userId,1);
         return ResponseResult.success();
+    }
+
+    @ApiOperation("download")
+    @PostMapping ("/download")
+    void download(HttpServletRequest req, HttpServletResponse resp) {
+        File file2=new File("E:\\Unitehcs\\hello.txt");
+        //获取文件名
+        String fileName="hello";
+        if(file2.exists()){
+            FileInputStream in=null;
+            HttpServletResponse response=resp;
+            response.setCharacterEncoding("UTF-8");
+            response.setContentType("application/octet-stream;charset=utf-8");
+            response.setHeader("Content-disposition","attachment;filename="+fileName);
+            try{
+                in=new FileInputStream(file2);
+                byte[]a=new byte[1024];
+                int b;
+                while ((b=in.read(a))!=-1){
+                    response.getOutputStream().write(a,0,b);
+                }
+            }catch (Exception e){
+                e.printStackTrace();
+            }finally {
+                if(null!=in){
+                    try{
+                        in.close();
+                    }catch (IOException e2){
+                        log.info("关闭输入流错误");
+                    }
+                    try{
+                        response.getOutputStream().close();
+                    }catch (IOException e){
+                        log.info("输出流关闭错误");
+                    }
+                }
+            }
+        }else {
+            try {
+                resp.getWriter().println("查不到文件");
+            }catch (IOException e){
+                log.info("resp返回前端信息异常");
+            }
+        }
     }
 }
