@@ -15,5 +15,8 @@ public class Solution {
         jsonObject.put("endTime", "endTime");
         String busiParams = JSON.toJSONString(jsonObject);
         System.out.println(busiParams);
+        String busiParams1 = jsonObject.toString();
+        System.out.println(busiParams1);
+        System.out.println(jsonObject);
     }
 }
