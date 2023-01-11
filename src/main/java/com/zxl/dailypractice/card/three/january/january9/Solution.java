@@ -18,5 +18,9 @@ public class Solution {
         String busiParams1 = jsonObject.toString();
         System.out.println(busiParams1);
         System.out.println(jsonObject);
+
+        int taskid = 640569;
+        String s = Integer.toString(taskid);
+        System.out.println(s);
     }
 }
