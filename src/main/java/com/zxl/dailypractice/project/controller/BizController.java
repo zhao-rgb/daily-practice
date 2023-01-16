@@ -47,6 +47,7 @@ public class BizController {
     @PostMapping ("/fen")
     public ResponseResult hello(@RequestBody GetsubTaskListReq getsubTaskListReq){
         Map<String, Object> map = new HashMap<>();
+        //list使用hutools
         PageHelper.startPage(getsubTaskListReq.getPageNum(),getsubTaskListReq.getPageSize());
         List<GetsubTaskListReq> getsubTaskListResps = new ArrayList<>();
 
@@ -90,12 +91,6 @@ public class BizController {
     @ApiOperation("download")
     @PostMapping ("/download")
     void download(HttpServletRequest req, HttpServletResponse resp) {
-        String bb ="hh";
-        Map<String, String> sysParam = new HashMap<>();
-        sysParam.put("servicecode",bb);
-        System.out.println(sysParam);
-        log.info("sysParam为：",sysParam);
-
         File file2=new File("E:\\Unitehcs\\hello.txt");
         //获取文件名
         String fileName="hello";

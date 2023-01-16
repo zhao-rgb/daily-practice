@@ -24,7 +24,7 @@ public class Solution {
         System.out.println(s);
         System.out.println("hello");
 
-//        //割接状态更改
+//        //割接状态更改  将object转成list对象
 //        GetsubTaskListReq getsubTaskListReq = new GetsubTaskListReq();
 //        getsubTaskListReq.setTaskid(req.getTaskid());
 //        RestPageRequest.Page pageReq = new RestPageRequest.Page();
@@ -32,16 +32,15 @@ public class Solution {
 //        pageReq.setPageSize(500);
 //        getsubTaskListReq.setPage(pageReq);
 //        Map<String, Object> map = getsubTaskList(getsubTaskListReq);
-//        logger.info(map.get("records").toString());
-//
-////        List<GetsubTaskListResp> getsubTaskListResps = new ArrayList<>();
-////        if (map.get("records") )
-//        JSONArray records = JSONArray.parseArray(map.get("records").toString());
-//        for (Object a : records){
-//            JSONObject jsonObject = JSONObject.parseObject(a.toString());
-//            String newexecutestatus = jsonObject.getString("newexecutestatus");
-//            logger.info(newexecutestatus);
+//        List<GetsubTaskListResp> getsubTaskListResps = new ArrayList<GetsubTaskListResp>();
+//        logger.info("map" + map.get("records").toString());
+//        Object obj = map.get("records");
+//        if (obj instanceof List<?>){
+//            for (Object o : (List<?>) obj){
+//                getsubTaskListResps.add((GetsubTaskListResp) o);
+//            }
 //        }
-//        return RestResponse.ok();
+//        logger.info("----------------");
+//        logger.info("getsubTaskListResps"+getsubTaskListResps);
     }
 }
