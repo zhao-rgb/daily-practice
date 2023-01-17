@@ -91,7 +91,7 @@ public class BizController {
     @ApiOperation("download")
     @PostMapping ("/download")
     void download(HttpServletRequest req, HttpServletResponse resp) {
-        File file2=new File("E:\\Unitehcs\\hello.txt");
+        File file2=new File("E:\\Unitehcs\\data.csv");
         //获取文件名
         String fileName="hello";
         if(file2.exists()){
