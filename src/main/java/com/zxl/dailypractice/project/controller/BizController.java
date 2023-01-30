@@ -47,8 +47,8 @@ public class BizController {
     @Autowired
     private RedisUtil redis;
 
-    @ApiOperation("分页")
-    @PostMapping ("/fen")
+    @ApiOperation("list分页")
+    @PostMapping ("/list/paging")
     public ResponseResult hello(@RequestBody GetsubTaskListReq getsubTaskListReq){
         Map<String, Object> map = new HashMap<>();
         //list使用hutools
@@ -68,22 +68,22 @@ public class BizController {
         return ResponseResult.success(map);
     }
 
-    @ApiOperation("test")
-    @PostMapping ("/test")
+    @ApiOperation("部门test")
+    @PostMapping ("/departmentz/test")
     public ResponseResult test(){
         log.info("hello");
         List<Map<String, Object>> departmentz = meetingMapper.getDepartmentz();
         return ResponseResult.success(departmentz);
     }
 
-    @ApiOperation("test1")
-    @PostMapping ("/test1")
+    @ApiOperation("enum使用")
+    @PostMapping ("/enum/test")
     public ResponseResult test1(){
         log.info(TestEnum.TASK_APPLY.getCode());
         return ResponseResult.success(meetingMapper.getDepartmentzo());
     }
 
-    @ApiOperation("redis")
+    @ApiOperation("redis测试")
     @PostMapping ("/redis")
     public ResponseResult redis(String userId, HttpServletRequest request){
         String userIp = IpUtil.getRequestIp(request);
@@ -92,6 +92,7 @@ public class BizController {
         return ResponseResult.success();
     }
 
+    //读取文件内容
     @ApiOperation("readdownload")
     @PostMapping ("/read/download")
     void readdownload(HttpServletRequest req, HttpServletResponse resp) {
@@ -136,15 +137,17 @@ public class BizController {
         }
     }
 
+    //下载文件方法1
     @ApiOperation("download")
-    @PostMapping ("/download")
+    @PostMapping ("/download/one")
     void download(HttpServletRequest req, HttpServletResponse resp){
         File file=new File("E:\\Unitehcs\\ZJ_ipranPortInfo_all_20221212040230.json.gz");
         downloadZip(file,resp);
     }
 
+    //下载文件方法2
     @ApiOperation("downloadz")
-    @PostMapping ("/downloadz")
+    @PostMapping ("/download/two")
     public ResponseEntity<byte[]> downloadz(HttpServletRequest req, HttpServletResponse resp){
         File file=new File("E:\\Unitehcs\\workfile\\12月\\30518\\ZJ_ipranPortInfo_all_20221212040230.json.gz");
         byte[] fileData = downloadFile(file);
@@ -154,8 +157,7 @@ public class BizController {
         headers.setContentLength(fileData.length);
         headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
         HttpStatus statusCode = HttpStatus.OK;
-        ResponseEntity<byte[]> entity = new ResponseEntity<>(fileData, headers, statusCode);
-        return entity;
+        return new ResponseEntity<>(fileData, headers, statusCode);
     }
 
     public byte[] downloadFile(File file) {

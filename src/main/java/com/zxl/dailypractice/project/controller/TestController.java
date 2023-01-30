@@ -43,7 +43,7 @@ import java.util.*;
  **/
 @RestController
 @Slf4j
-@Api(tags = "测试json")
+@Api(tags = "测试demo")
 public class TestController {
 
     // 是否大数据导出
@@ -52,7 +52,7 @@ public class TestController {
     private static final int moredatalimit = 2500;
     private static final int limitoutdata = 65535;
 
-    @ApiOperation("json")
+    @ApiOperation("测试json")
     @PostMapping("/testJson")
     public String json(@RequestBody JSONObject obj){
         String filename = obj.getString("filename");
@@ -93,6 +93,8 @@ public class TestController {
         return null;
     }
 
+    //导出excel表格上色
+    @ApiOperation(notes = "导出excel表格上色", value = "导出excel表格上色")
     @RequestMapping(value = "/GlobalFlowMatrixExport", method = RequestMethod.POST)
     @ResponseBody
     public void globalFlowMatrixExport(HttpServletRequest request,
@@ -120,6 +122,7 @@ public class TestController {
         }
     }
 
+    //根据excel表格返回表格中的数据
     @PostMapping("/getDiaByImportFile")
     @ApiOperation(notes = "1.2.7导入文件获取专线", value = "1.2.7导入文件获取专线")
     ResponseResult getDiaByImportFile(@RequestParam("file") MultipartFile file) {

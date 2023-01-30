@@ -32,8 +32,10 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.FileInputStream;
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author: zhaoxl
@@ -59,29 +61,25 @@ public class MeetingController {
     // 查询全部部门
     @ApiOperation("查询全部部门")
     @GetMapping("/meetingz")
-    public List<Meetings> hello(){
-//        String cfgdeployBody = "";
-//        List<Meetings> departments = meetingMapper.getDepartments();
-//        for (Meetings a : departments){
-//            cfgdeployBody = getCfgdeployBody(a);
-//        }
-//        return cfgdeployBody;
+    public String hello(){
+        String cfgdeployBody = "";
         List<Meetings> departments = meetingMapper.getDepartments();
-        departments = departments.stream().sorted(Comparator.comparing(Meetings::getId))
-                .collect(Collectors.toList());
-        return departments;
+        for (Meetings a : departments){
+            cfgdeployBody = getCfgdeployBody(a);
+        }
+        return cfgdeployBody;
     }
 
-    // 查询全部部门
-    @ApiOperation("hhhtest")
-    @PostMapping("/hhhtest")
+    // 测试Map
+    @ApiOperation("测试Map")
+    @PostMapping("/test/map")
     public GetAlarmSubscribeRule2RedisResp hhhtest(@RequestBody UpdateAlarmSubscribeRuleReq req){
         //封装redis存储对象
         GetAlarmSubscribeRule2RedisResp rule2RedisResp = new GetAlarmSubscribeRule2RedisResp();
         BeanUtils.copyProperties(req,rule2RedisResp);
         if(req.getFilterList()!=null&&req.getFilterList().size()>0){
             List<Map<String,Object>> objects = new ArrayList<>();
-            Map<String,Object> paraMap = new HashMap<>();
+            Map<String,Object> paraMap;
             for (UpdateAlarmSubscribeRuleFilterReq updateReq : req.getFilterList()) {
                 paraMap = new HashMap<>();
                 paraMap.put("fillterName",updateReq.getFilterName());
@@ -97,7 +95,7 @@ public class MeetingController {
     }
 
     @ApiOperation("上传文件")
-    @RequestMapping(value = "/upload",method = RequestMethod.POST)
+    @RequestMapping(value = "/upload/file",method = RequestMethod.POST)
     public FileReturn uploadFile(@RequestParam("file") MultipartFile multipartFile,
                                  @RequestParam("de") String de){
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes())
@@ -111,7 +109,7 @@ public class MeetingController {
     }
 
     @ApiOperation("token加表单请求")
-    @RequestMapping( value = "/hhh",method = RequestMethod.POST)
+    @RequestMapping( value = "/use/tokenRequest",method = RequestMethod.POST)
     public JSONObject predictProfile() throws Exception{
         MultiValueMap<String, Object> paramMap = new LinkedMultiValueMap<>();
         paramMap.add("de", "deeee");
