@@ -17,7 +17,7 @@ public class Solution {
     public static void main(String[] args) throws Exception {
         try {
             Map<String, Object> input1 = new HashMap<>();
-            input1.put("orderId", "1234567");
+            input1.put("orderId", "12345678");
             input1.put("classify", "hs2hs2");
             input1.put("neName", "xhaoxial");
             input1.put("opDetails", "zxl");
@@ -27,11 +27,14 @@ public class Solution {
 
             CoverList cover = new CoverList();
             cover.setNeName("hello");
+            cover.setIpAddress("address");
             List<CoverList> coverList = new ArrayList<>();
             coverList.add(cover);
             input1.put("coverList", coverList);
+            Map<String, Object> input2 = new HashMap<>();
+            input2.put("icutWSReq", input1);
 
-            IcutWSReq icutWSReq1 = JSONObject.parseObject(JSONObject.toJSONString(input1), IcutWSReq.class);
+            IcutWSReq icutWSReq1 = JSONObject.parseObject(JSONObject.toJSONString(input2), IcutWSReq.class);
             System.out.println(icutWSReq1);
             chencktIcut(icutWSReq1);
             System.out.println(icutWSReq1.getOpType());
