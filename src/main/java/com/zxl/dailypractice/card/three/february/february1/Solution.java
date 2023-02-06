@@ -34,12 +34,13 @@ public class Solution {
             Map<String, Object> input2 = new HashMap<>();
             input2.put("icutWSReq", input1);
 
-            IcutWSReq icutWSReq1 = JSONObject.parseObject(JSONObject.toJSONString(input2), IcutWSReq.class);
-            System.out.println(icutWSReq1);
-            chencktIcut(icutWSReq1);
-            System.out.println(icutWSReq1.getOpType());
+            System.out.println(JSONObject.parseObject(JSONObject.toJSONString(input2)));
+//            IcutWSReq icutWSReq1 = JSONObject.parseObject(JSONObject.toJSONString(input2), IcutWSReq.class);
+//            System.out.println(icutWSReq1);
+//            chencktIcut(icutWSReq1);
+//            System.out.println(icutWSReq1.getOpType());
         } catch (Exception e) {
-            System.out.println("shib");
+            System.out.println("失败");
         }
 
     }
