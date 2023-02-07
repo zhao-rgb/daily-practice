@@ -6,9 +6,7 @@ import com.github.pagehelper.PageHelper;
 import com.zxl.dailypractice.project.constant.TestEnum;
 import com.zxl.dailypractice.project.controller.req.GetsubTaskListReq;
 import com.zxl.dailypractice.project.mapper.MeetingMapper;
-import com.zxl.dailypractice.project.util.IpUtil;
-import com.zxl.dailypractice.project.util.RedisUtil;
-import com.zxl.dailypractice.project.util.ResponseResult;
+import com.zxl.dailypractice.project.util.*;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -26,10 +24,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.net.URLEncoder;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.nio.charset.StandardCharsets;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 /**
  * @author: zhaoxl
@@ -159,6 +156,35 @@ public class BizController {
         HttpStatus statusCode = HttpStatus.OK;
         return new ResponseEntity<>(fileData, headers, statusCode);
     }
+
+    //保存文件到本地
+    @ApiOperation("保存文件到本地")
+    @PostMapping ("/fileSave")
+    void fileSave(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+        String fileContent = "呵呵呵呵呵呵";
+        String suffix = ".cfg";
+        String fileName = "cfg_name" + new SimpleDateFormat("yyyyMMddHHmmss").format(new Date()) + suffix;
+        String filePath = System.getProperty("user.dir") + "/temp/" + new SimpleDateFormat("yyyy-MM-dd").format(new Date()) + "/";
+        FileUtil.saveFile(fileContent.getBytes(StandardCharsets.UTF_8),filePath,fileName);
+    }
+
+    //将所有的文件夹打成压缩包
+    @ApiOperation("打成压缩包")
+    @PostMapping ("/saveZip")
+    void saveZip(HttpServletRequest req, HttpServletResponse response) throws Exception {
+        String filePath = System.getProperty("user.dir") + "/zip/" + new SimpleDateFormat("yyyyMMddHHmmss").format(new Date()) + "/";
+        File targetFile = new File(filePath);
+        if (!targetFile.exists()) {
+            targetFile.mkdirs();
+        }
+        String fileName = "devcfglist_" + new SimpleDateFormat("yyyyMMddHHmmss").format(new Date()) + ".zip";
+        FileOutputStream fos1 = new FileOutputStream(filePath + fileName);
+        ZipUtil.toZip(System.getProperty("user.dir") + "/temp/", fos1, response, true);
+        //下载
+        ZipUtil.downloadZip(new File(filePath + fileName),response);
+
+    }
+
 
     public byte[] downloadFile(File file) {
         InputStream inputStream = null;
