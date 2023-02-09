@@ -45,11 +45,11 @@ public class BizController {
     private RedisUtil redis;
 
     @ApiOperation("list分页")
-    @PostMapping ("/list/paging")
-    public ResponseResult hello(@RequestBody GetsubTaskListReq getsubTaskListReq){
+    @PostMapping("/list/paging")
+    public ResponseResult hello(@RequestBody GetsubTaskListReq getsubTaskListReq) {
         Map<String, Object> map = new HashMap<>();
         //list使用hutools
-        PageHelper.startPage(getsubTaskListReq.getPageNum(),getsubTaskListReq.getPageSize());
+        PageHelper.startPage(getsubTaskListReq.getPageNum(), getsubTaskListReq.getPageSize());
         List<GetsubTaskListReq> getsubTaskListResps = new ArrayList<>();
 
         GetsubTaskListReq getsubTaskListReq1 = new GetsubTaskListReq();
@@ -66,69 +66,69 @@ public class BizController {
     }
 
     @ApiOperation("部门test")
-    @PostMapping ("/departmentz/test")
-    public ResponseResult test(){
+    @PostMapping("/departmentz/test")
+    public ResponseResult test() {
         log.info("hello");
         List<Map<String, Object>> departmentz = meetingMapper.getDepartmentz();
         return ResponseResult.success(departmentz);
     }
 
     @ApiOperation("enum使用")
-    @PostMapping ("/enum/test")
-    public ResponseResult test1(){
+    @PostMapping("/enum/test")
+    public ResponseResult test1() {
         log.info(TestEnum.TASK_APPLY.getCode());
         return ResponseResult.success(meetingMapper.getDepartmentzo());
     }
 
     @ApiOperation("redis测试")
-    @PostMapping ("/redis")
-    public ResponseResult redis(String userId, HttpServletRequest request){
+    @PostMapping("/redis")
+    public ResponseResult redis(String userId, HttpServletRequest request) {
         String userIp = IpUtil.getRequestIp(request);
-        redis.setnx("REDIS:"+userId+":"+userIp,userIp);
-        redis.increment("REDIS_COUNT:"+userId,1);
+        redis.setnx("REDIS:" + userId + ":" + userIp, userIp);
+        redis.increment("REDIS_COUNT:" + userId, 1);
         return ResponseResult.success();
     }
 
     //读取文件内容
     @ApiOperation("readdownload")
-    @PostMapping ("/read/download")
+    @PostMapping("/read/download")
     void readdownload(HttpServletRequest req, HttpServletResponse resp) {
-        File file2=new File("E:\\Unitehcs\\data.csv");
+        File file2 = new File("E:\\Unitehcs\\data.csv");
         //获取文件名
-        String fileName="hello";
-        if(file2.exists()){
-            FileInputStream in=null;
-            HttpServletResponse response=resp;
+        String fileName = "hello";
+        if (file2.exists()) {
+            FileInputStream in = null;
+            HttpServletResponse response = resp;
             response.setCharacterEncoding("UTF-8");
             response.setContentType("application/octet-stream;charset=utf-8");
-            response.setHeader("Content-disposition","attachment;filename="+fileName);
-            try{
-                in=new FileInputStream(file2);
-                byte[]a=new byte[1024];
+            response.setHeader("Content-disposition", "attachment;filename=" + fileName);
+            try {
+                in = new FileInputStream(file2);
+                byte[] a = new byte[1024];
                 int b;
-                while ((b=in.read(a))!=-1){
-                    response.getOutputStream().write(a,0,b);
+                while ((b = in.read(a)) != -1) {
+                    response.getOutputStream().write(a, 0, b);
                 }
-            }catch (Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
-            }finally {
-                if(null!=in){
-                    try{
+            } finally {
+                if (null != in) {
+                    try {
                         in.close();
-                    }catch (IOException e2){
+                    } catch (IOException e2) {
                         log.info("关闭输入流错误");
                     }
-                    try{
+                    try {
                         response.getOutputStream().close();
-                    }catch (IOException e){
+                    } catch (IOException e) {
                         log.info("输出流关闭错误");
                     }
                 }
             }
-        }else {
+        } else {
             try {
                 resp.getWriter().println("查不到文件");
-            }catch (IOException e){
+            } catch (IOException e) {
                 log.info("resp返回前端信息异常");
             }
         }
@@ -136,17 +136,17 @@ public class BizController {
 
     //下载文件方法1
     @ApiOperation("download")
-    @PostMapping ("/download/one")
-    void download(HttpServletRequest req, HttpServletResponse resp){
-        File file=new File("E:\\Unitehcs\\ZJ_ipranPortInfo_all_20221212040230.json.gz");
-        downloadZip(file,resp);
+    @PostMapping("/download/one")
+    void download(HttpServletRequest req, HttpServletResponse resp) {
+        File file = new File("E:\\Unitehcs\\ZJ_ipranPortInfo_all_20221212040230.json.gz");
+        downloadZip(file, resp);
     }
 
     //下载文件方法2
     @ApiOperation("downloadz")
-    @PostMapping ("/download/two")
-    public ResponseEntity<byte[]> downloadz(HttpServletRequest req, HttpServletResponse resp){
-        File file=new File("E:\\Unitehcs\\workfile\\12月\\30518\\ZJ_ipranPortInfo_all_20221212040230.json.gz");
+    @PostMapping("/download/two")
+    public ResponseEntity<byte[]> downloadz(HttpServletRequest req, HttpServletResponse resp) {
+        File file = new File("E:\\Unitehcs\\workfile\\12月\\30518\\ZJ_ipranPortInfo_all_20221212040230.json.gz");
         byte[] fileData = downloadFile(file);
         String filename = "XZ_ipranDeviceInfo_all_20230116081405.json.gz";
         HttpHeaders headers = new HttpHeaders();
@@ -159,18 +159,18 @@ public class BizController {
 
     //保存文件到本地
     @ApiOperation("保存文件到本地")
-    @PostMapping ("/fileSave")
+    @PostMapping("/fileSave")
     void fileSave(HttpServletRequest req, HttpServletResponse resp) throws Exception {
         String fileContent = "呵呵呵呵呵呵";
         String suffix = ".cfg";
         String fileName = "cfg_name" + new SimpleDateFormat("yyyyMMddHHmmss").format(new Date()) + suffix;
         String filePath = System.getProperty("user.dir") + "/temp/" + new SimpleDateFormat("yyyy-MM-dd").format(new Date()) + "/";
-        FileUtil.saveFile(fileContent.getBytes(StandardCharsets.UTF_8),filePath,fileName);
+        FileUtil.saveFile(fileContent.getBytes(StandardCharsets.UTF_8), filePath, fileName);
     }
 
     //将所有的文件夹打成压缩包
     @ApiOperation("打成压缩包")
-    @PostMapping ("/saveZip")
+    @PostMapping("/saveZip")
     void saveZip(HttpServletRequest req, HttpServletResponse response) throws Exception {
         String filePath = System.getProperty("user.dir") + "/zip/" + new SimpleDateFormat("yyyyMMddHHmmss").format(new Date()) + "/";
         File targetFile = new File(filePath);
@@ -181,22 +181,39 @@ public class BizController {
         FileOutputStream fos1 = new FileOutputStream(filePath + fileName);
         ZipUtil.toZip(System.getProperty("user.dir") + "/temp/", fos1, response, true);
         //下载
-        ZipUtil.downloadZip(new File(filePath + fileName),response);
+        ZipUtil.downloadZip(new File(filePath + fileName), response);
 
+    }
+
+
+    //转义换行
+    @ApiOperation("转义换行")
+    @PostMapping("/transferred")
+    void transferred(HttpServletRequest req, HttpServletResponse response) throws Exception {
+        String a = "display current-configuration\\r\\n!Software Version V800R011C10SPC800\\r\\n";
+        String fileContent = a.replace("\\r\\n", System.getProperty("line.separator"));
+
+        System.out.println(fileContent);
+
+        String suffix = ".txt";
+        String fileName = "file" + new SimpleDateFormat("yyyyMMddHHmmss").format(new Date()) + suffix;
+        String filePath = System.getProperty("user.dir") + "/temp/" + new SimpleDateFormat("yyyy-MM-dd").format(new Date()) + "/";
+        FileUtil.saveFile(fileContent.getBytes(StandardCharsets.UTF_8), filePath, fileName);
     }
 
 
     public byte[] downloadFile(File file) {
         InputStream inputStream = null;
         try {
-            inputStream = new BufferedInputStream(new FileInputStream(file));;
-            ByteArrayOutputStream  byteOutputStream = new ByteArrayOutputStream();
+            inputStream = new BufferedInputStream(new FileInputStream(file));
+            ;
+            ByteArrayOutputStream byteOutputStream = new ByteArrayOutputStream();
             IOUtils.copy(inputStream, byteOutputStream);
             return byteOutputStream.toByteArray();
         } catch (Exception e) {
             throw new RuntimeException("下载文件异常", e);
         } finally {
-            if(inputStream != null){
+            if (inputStream != null) {
                 try {
                     inputStream.close();
                 } catch (IOException e) {
