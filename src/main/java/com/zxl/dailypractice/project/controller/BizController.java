@@ -18,6 +18,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
@@ -199,6 +200,18 @@ public class BizController {
         String fileName = "file" + new SimpleDateFormat("yyyyMMddHHmmss").format(new Date()) + suffix;
         String filePath = System.getProperty("user.dir") + "/temp/" + new SimpleDateFormat("yyyy-MM-dd").format(new Date()) + "/";
         FileUtil.saveFile(fileContent.getBytes(StandardCharsets.UTF_8), filePath, fileName);
+    }
+
+    //转义换行
+    @ApiOperation("string")
+    @PostMapping("/test/string")
+    public String string(@RequestParam("taskid") int taskid) throws Exception {
+        System.out.println(String.valueOf(taskid));
+        return genAfterCfgFile(String.valueOf(taskid));
+    }
+
+    public String genAfterCfgFile(String taskid){
+        return "hhhhhh"+taskid;
     }
 
 
