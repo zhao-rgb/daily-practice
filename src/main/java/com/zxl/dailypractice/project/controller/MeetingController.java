@@ -7,6 +7,7 @@ import com.zxl.dailypractice.project.controller.resp.GetAlarmSubscribeRule2Redis
 import com.zxl.dailypractice.project.entity.Meetings;
 import com.zxl.dailypractice.project.mapper.MeetingMapper;
 import com.zxl.dailypractice.project.service.FileService;
+import com.zxl.dailypractice.project.util.ExcelPageUtils;
 import com.zxl.dailypractice.project.util.FileReturn;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -30,6 +31,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.FileInputStream;
 import java.util.ArrayList;
@@ -138,6 +140,27 @@ public class MeetingController {
         return predictProfile;
     }
 
+    @ApiOperation("导出excel带标题")
+    @PostMapping("/exportTitle")
+    public void exportTitle(HttpServletResponse response){
+        List<List<String>> exprotList = new ArrayList<>();
+        List<String> cellList = new ArrayList<>();
+        cellList.add("entiy.getNodename()");
+        cellList.add("entiy.getDevname()");
+        cellList.add("entiy.getMgmtip()");
+        cellList.add("entiy.getHealthscore()");
+        exprotList.add(cellList);
+        List<String> titleList = new ArrayList<>();
+        titleList.add("节点");
+        titleList.add("设备名称");
+        titleList.add("设备IP");
+        titleList.add("健康指数:hello,zxl");
+        String filePath = this.getClass().getClassLoader().getResource("").getPath() + "/temp/";
+        System.out.println(filePath);
+        String fileName = "rcheckMatrixinfo.xlsx";
+        ExcelPageUtils.createExcel(exprotList, titleList.toArray(new String[titleList.size()]), 40, filePath,
+                fileName, response);
+    }
 
 
     public static String getCfgdeployBody(Meetings meetings) {
