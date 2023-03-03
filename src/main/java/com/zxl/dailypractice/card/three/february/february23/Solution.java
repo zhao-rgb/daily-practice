@@ -11,10 +11,11 @@ import java.util.Map;
 public class Solution {
     public static void main(String[] args) {
         Map<Object, Integer> timeMap = new HashMap<>();
-        timeMap.put(2,3);
-        timeMap.put(1,3);
-        if (timeMap.containsKey(2)){
-            timeMap.put(2,timeMap.get(2) + 3);
+        timeMap.put("2023-03-01 00:10:00",3);
+        timeMap.put("2023-03-02 00:10:00",3);
+        if (timeMap.containsKey("2023-03-01 00:10:00")){
+            timeMap.put("2023-03-01 00:10:00",timeMap.get("2023-03-01 00:10:00") + 3);
         }
+        System.out.println(timeMap);
     }
 }
