@@ -85,7 +85,7 @@ public class EsController {
         String sql = "select * from " + indexName + " limit " + startNumNew + "," + pageSizeNew;
         log.info("===============sql语句为：" + sql);
 
-        indexName = "am_ala_alarmsummary_20230217";
+        indexName = "am_ala_alarmsummary_*";
         log.info("esSearchIndex:{}",indexName);
         QueryDocumentRequest<JSONObject> queryDocumentRequest = new QueryDocumentRequest<JSONObject>(indexName,"_doc",sql,JSONObject.class);
         QueryDocumentResponse<JSONObject> jsonObjectQueryDocumentResponse = esTemplate.queryDocument(queryDocumentRequest);
