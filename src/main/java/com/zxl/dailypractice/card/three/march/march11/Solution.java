@@ -10,5 +10,6 @@ public class Solution {
         System.out.println("找工作好难");
         System.out.println("麻啦");
         System.out.println("zhaobudaoya");
+        System.out.println("没有工作呀");
     }
 }
