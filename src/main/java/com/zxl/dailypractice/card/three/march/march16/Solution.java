@@ -7,6 +7,6 @@ package com.zxl.dailypractice.card.three.march.march16;
  **/
 public class Solution {
     public static void main(String[] args) {
-        new Solution();
+        System.out.println("buzdgs");
     }
 }
