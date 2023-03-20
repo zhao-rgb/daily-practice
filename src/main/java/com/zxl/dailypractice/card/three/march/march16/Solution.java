@@ -9,5 +9,6 @@ public class Solution {
     public static void main(String[] args) {
         System.out.println("buzdgs");
         System.out.println("hhhh");
+        System.out.println("dddd");
     }
 }
