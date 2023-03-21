@@ -7,8 +7,6 @@ package com.zxl.dailypractice.card.three.march.march16;
  **/
 public class Solution {
     public static void main(String[] args) {
-        System.out.println("buzdgs");
-        System.out.println("hhhh");
-        System.out.println("dddd");
+        System.out.println("工作能不能在难找一点！！！");
     }
 }
