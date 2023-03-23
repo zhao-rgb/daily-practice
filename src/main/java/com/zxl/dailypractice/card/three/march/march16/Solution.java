@@ -9,5 +9,6 @@ public class Solution {
     public static void main(String[] args) {
         System.out.println("工作能不能在难找一点！！！");
         System.out.println("工作能不能在难找一点！！！");
+        System.out.println("工作能不能在难");
     }
 }
