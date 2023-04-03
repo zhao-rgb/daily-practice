@@ -13,5 +13,6 @@ public class Solution {
         System.out.println("工作能不能在难");
         System.out.println("工作能不能在难");
         System.out.println("工作能不能在难");
+        System.out.println("工作能不能在难");
     }
 }
