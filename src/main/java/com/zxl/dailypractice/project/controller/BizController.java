@@ -1,8 +1,6 @@
 package com.zxl.dailypractice.project.controller;
 
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
-import com.github.pagehelper.PageHelper;
+import cn.hutool.core.collection.ListUtil;
 import com.zxl.dailypractice.project.constant.TestEnum;
 import com.zxl.dailypractice.project.controller.req.GetsubTaskListReq;
 import com.zxl.dailypractice.project.mapper.MeetingMapper;
@@ -11,13 +9,13 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -47,22 +45,39 @@ public class BizController {
 
     @ApiOperation("list分页")
     @PostMapping("/list/paging")
-    public ResponseResult hello(@RequestBody GetsubTaskListReq getsubTaskListReq) {
+    public ResponseResult hello(String pageSize, String pageNo) {
         Map<String, Object> map = new HashMap<>();
         //list使用hutools
-        PageHelper.startPage(getsubTaskListReq.getPageNum(), getsubTaskListReq.getPageSize());
         List<GetsubTaskListReq> getsubTaskListResps = new ArrayList<>();
 
         GetsubTaskListReq getsubTaskListReq1 = new GetsubTaskListReq();
-        getsubTaskListReq1.setAccessnum("12s2");
+        getsubTaskListReq1.setAccessnum("1");
         GetsubTaskListReq getsubTaskListReq2 = new GetsubTaskListReq();
-        getsubTaskListReq2.setAccessnum("s2jis2hs2");
+        getsubTaskListReq2.setAccessnum("2");
+        GetsubTaskListReq getsubTaskListReq3 = new GetsubTaskListReq();
+        getsubTaskListReq3.setAccessnum("3");
         getsubTaskListResps.add(getsubTaskListReq1);
         getsubTaskListResps.add(getsubTaskListReq2);
-        //返回报文format  start
-        JSONArray jsonArray = JSONArray.parseArray(JSONObject.toJSONString(getsubTaskListResps));
+        getsubTaskListResps.add(getsubTaskListReq3);
+        //任务32171 分页
+        if (StringUtils.isBlank(pageSize)){
+            pageSize = "20";
+        }
+        if (StringUtils.isBlank(pageNo)){
+            pageNo = "1";
+        }
+        List<GetsubTaskListReq> result = ListUtil.page(Integer.parseInt(pageNo) - 1,
+                Integer.parseInt(pageSize), getsubTaskListResps);
+        int total = getsubTaskListResps.size();//获取集合总数
+        int totalPage = total%Integer.parseInt(pageSize) == 0
+                ?total/Integer.parseInt(pageSize)
+                :total/Integer.parseInt(pageSize) + 1;
 
-        map.put("records", jsonArray);
+        map.put("pageNum", Integer.parseInt(pageNo));
+        map.put("pageSize", Integer.parseInt(pageSize));
+        map.put("pages",totalPage);
+        map.put("total",total);
+        map.put("records", result);
         return ResponseResult.success(map);
     }
 
