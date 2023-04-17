@@ -25,6 +25,5 @@ public class Solution {
         long endTime = System.currentTimeMillis();
         long timeElapsed = endTime - startTime;
         System.out.println("Time elapsed for event 1: " + timeElapsed + " milliseconds");
-        //todo
     }
 }
