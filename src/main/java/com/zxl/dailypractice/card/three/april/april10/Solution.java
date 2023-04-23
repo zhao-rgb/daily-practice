@@ -29,6 +29,7 @@ public class Solution {
         String[] split = "[\"e5a6b590-0d0c-4c75-b061-34703d803f0a\",\"1\"]".replace("[", "").replace("]", "").replace("\"","").split(",");
         String s = split[0];
         System.out.println(s);
+        System.out.println(s);
     }
 
 }
