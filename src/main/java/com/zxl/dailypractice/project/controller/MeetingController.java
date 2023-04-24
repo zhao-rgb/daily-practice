@@ -9,6 +9,7 @@ import com.zxl.dailypractice.project.mapper.MeetingMapper;
 import com.zxl.dailypractice.project.service.FileService;
 import com.zxl.dailypractice.project.util.ExcelPageUtils;
 import com.zxl.dailypractice.project.util.FileReturn;
+import com.zxl.dailypractice.project.util.ResponseResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -63,13 +64,27 @@ public class MeetingController {
     // 查询全部部门
     @ApiOperation("查询全部部门")
     @GetMapping("/meetingz")
-    public String hello(){
+    public ResponseResult hello(){
         String cfgdeployBody = "";
         List<Meetings> departments = meetingMapper.getDepartments();
-        for (Meetings a : departments){
-            cfgdeployBody = getCfgdeployBody(a);
+//        for (Meetings a : departments){
+//            cfgdeployBody = getCfgdeployBody(a);
+//        }
+        return ResponseResult.success(departments);
+    }
+
+    @ApiOperation("调用接口")
+    @GetMapping("/callHello")
+    public ResponseResult CallHello(){
+        ResponseResult hello = hello();
+        JSONObject jsonObject = JSONObject.parseObject(hello.toString());
+        List<Meetings> pmColFluxDay = null;
+        if("1".equals(jsonObject.getString("code"))){
+             pmColFluxDay = JSONObject.parseArray(jsonObject.getString("data"),Meetings.class);
+        } else {
+            System.out.println("调用/api/arpt/pmColFluxDay异常");
         }
-        return cfgdeployBody;
+        return ResponseResult.success(pmColFluxDay);
     }
 
     // 测试Map
