@@ -142,4 +142,44 @@ public class ExcelPageUtils {
         }
         return style2;
     }
+
+    public static void createExcelNoresponse(List<List<String>> exprotList, String[] titles, int sheetSize,
+                                             String filePath,String fileName){
+        // 声明一个工作薄
+        HSSFWorkbook workbook = new HSSFWorkbook();
+        HSSFSheet sheet = null;
+        HSSFCellStyle style = null;
+        for (int i = 0, index = 2,sheetIndex = 0; i < exprotList.size(); i++, index++) {
+            if(i%sheetSize==0){
+                sheetIndex++;
+                // 生成一个表格
+                sheet = workbook.createSheet("第"+sheetIndex+"页");
+                style = setStyle(workbook,sheet,titles);
+                index = 2;	//新建sheet页之后，index对应的行数要从第三行开始
+            }
+            HSSFRow row = sheet.createRow(index);
+            for (int j = 0; j < exprotList.get(i).size(); j++) {
+                HSSFCell cell = row.createCell(j);
+                cell.setCellStyle(style);
+                HSSFRichTextString richString = new HSSFRichTextString(exprotList.get(i).get(j));
+                cell.setCellValue(richString);
+            }
+        }
+        OutputStream out = null;
+        InputStream myStream = null;
+        try {
+            File fileDir = new File(filePath);
+            if (!fileDir.exists()) {// 判断目录是否存在
+                fileDir.mkdirs();
+            }
+            String fileFullName = filePath + fileName;
+            File file = new File(fileFullName);
+            out = new FileOutputStream(file);
+            workbook.write(out);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

@@ -1,6 +1,7 @@
 package com.zxl.dailypractice.project.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.zxl.dailypractice.project.controller.req.GetsubTaskListReq;
 import com.zxl.dailypractice.project.controller.req.UpdateAlarmSubscribeRuleFilterReq;
 import com.zxl.dailypractice.project.controller.req.UpdateAlarmSubscribeRuleReq;
 import com.zxl.dailypractice.project.controller.resp.GetAlarmSubscribeRule2RedisResp;
@@ -10,6 +11,7 @@ import com.zxl.dailypractice.project.service.FileService;
 import com.zxl.dailypractice.project.util.ExcelPageUtils;
 import com.zxl.dailypractice.project.util.FileReturn;
 import com.zxl.dailypractice.project.util.ResponseResult;
+import com.zxl.dailypractice.project.util.ZipUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -33,12 +35,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.File;
-import java.io.FileInputStream;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.io.*;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 /**
  * @author: zhaoxl
@@ -157,7 +156,27 @@ public class MeetingController {
 
     @ApiOperation("导出excel带标题")
     @PostMapping("/exportTitle")
-    public void exportTitle(HttpServletResponse response){
+    public void exportTitle(HttpServletResponse response) throws Exception {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddhhmmss");
+        String format = sdf.format(new Date());
+        List<GetsubTaskListReq> getsubTaskListResps = new ArrayList<>();
+        GetsubTaskListReq getsubTaskListReq1 = new GetsubTaskListReq();
+        getsubTaskListReq1.setAccessnum("1");
+        getsubTaskListReq1.setStep("1");
+        GetsubTaskListReq getsubTaskListReq2 = new GetsubTaskListReq();
+        getsubTaskListReq2.setAccessnum("2");
+        getsubTaskListReq2.setStep("2");
+        GetsubTaskListReq getsubTaskListReq3 = new GetsubTaskListReq();
+        getsubTaskListReq3.setAccessnum("3");
+        getsubTaskListReq3.setStep("3");
+        getsubTaskListResps.add(getsubTaskListReq1);
+        getsubTaskListResps.add(getsubTaskListReq2);
+        getsubTaskListResps.add(getsubTaskListReq3);
+
+        for (GetsubTaskListReq c : getsubTaskListResps){
+            //按照一个设备+巡检项，生成一个txt文件
+            writeContent(c.getAccessnum() + "_" + c.getStep(), c.getStep(),format);
+        }
         List<List<String>> exprotList = new ArrayList<>();
         List<String> cellList = new ArrayList<>();
         cellList.add("entiy.getNodename()");
@@ -170,13 +189,50 @@ public class MeetingController {
         titleList.add("设备名称");
         titleList.add("设备IP");
         titleList.add("健康指数:hello,zxl");
-        String filePath = this.getClass().getClassLoader().getResource("").getPath() + "/temp/";
+//        String filePath = this.getClass().getClassLoader().getResource("").getPath() + "/temp/";
+        String filePath = System.getProperty("user.dir") + "/itep/var/tmp/rcheck/detaillog/" + format + "/";
         System.out.println(filePath);
         String fileName = "rcheckMatrixinfo.xlsx";
-        ExcelPageUtils.createExcel(exprotList, titleList.toArray(new String[titleList.size()]), 40, filePath,
-                fileName, response);
+//        ExcelPageUtils.createExcel(exprotList, titleList.toArray(new String[titleList.size()]), 40, filePath,
+//                fileName, response);
+        ExcelPageUtils.createExcelNoresponse(exprotList, titleList.toArray(new String[titleList.size()]), 40, filePath,
+                fileName);
+        //任务32146
+        saveZip(filePath,response);
     }
 
+    public void writeContent(String fileName1,String data,String uuid){
+        String filePath = System.getProperty("user.dir") + "/itep/var/tmp/rcheck/detaillog/" + uuid + "/";
+        File targetFile = new File(filePath);
+        if (!targetFile.exists()) {
+            targetFile.mkdirs();
+        }
+        String fileName = fileName1 + ".txt";
+        try {
+            FileWriter fileWriter = new FileWriter(filePath + fileName);
+            fileWriter.write(data==null?"":data);
+            fileWriter.close();
+            log.info("Successfully wrote to the file.");
+        } catch (IOException e) {
+            log.info("An error occurred while writing to the file.");
+            log.info(e.getMessage());
+        }
+    }
+
+    public void saveZip(String filepath,HttpServletResponse response) throws Exception {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddhhmmss");
+        String format = sdf.format(new Date());
+        String filePath = System.getProperty("user.dir") + "/itep/var/tmp/rcheck/saveZip/";
+        File targetFile = new File(filePath);
+        if (!targetFile.exists()) {
+            targetFile.mkdirs();
+        }
+        String fileName = format + "rcheckMatrixinfo.zip";
+        FileOutputStream fos1 = new FileOutputStream(filePath + fileName);
+        ZipUtil.toZip(filepath, fos1, true);
+        //下载
+        ZipUtil.downloadZip(new File(filePath + fileName), response);
+    }
 
     public static String getCfgdeployBody(Meetings meetings) {
         String paradef = meetings.getSubject();
