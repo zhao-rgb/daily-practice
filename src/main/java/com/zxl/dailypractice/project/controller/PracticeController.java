@@ -1,16 +1,22 @@
 package com.zxl.dailypractice.project.controller;
 
+import com.alibaba.fastjson.JSONObject;
+import com.zxl.dailypractice.project.controller.req.CreateAlarmAttrReq;
 import com.zxl.dailypractice.project.entity.Meetings;
 import com.zxl.dailypractice.project.mapper.MeetingMapper;
+import com.zxl.dailypractice.project.util.ResponseResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
@@ -33,6 +39,17 @@ public class PracticeController {
         departments = departments.stream().sorted(Comparator.comparing(Meetings::getId))
                 .collect(Collectors.toList());
         return departments;
+    }
+
+    @ApiOperation("告警")
+    @PostMapping("/serv/createAlarm")
+    public ResponseResult createAlarm(@RequestBody List<CreateAlarmAttrReq> list){
+        log.info("requestBody:"+ JSONObject.toJSONString(list));
+        Map<String,Object> dataMap = new HashMap<>();
+        for (CreateAlarmAttrReq attr : list) {
+            dataMap.put(attr.getAttributeCode(),attr.getAttributeValue());
+        }
+        return ResponseResult.success(dataMap);
     }
 
 }
