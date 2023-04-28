@@ -1,7 +1,9 @@
 package com.zxl.dailypractice.project.controller.req;
 
 public class CreateAlarmAttrReq {
+    //键
     private String attributeCode;
+    //值
     private String attributeValue;
 
     public String getAttributeCode() {
