@@ -7,6 +7,12 @@ package com.zxl.dailypractice.card.three.may.may5;
  **/
 public class Solution {
     public static void main(String[] args) {
-        System.out.println("hello");
+        String[] test = {"1","2","3"};
+        String str = "";
+        for (String t : test){
+            str += t + "\r\n";
+        }
+        String substring = str.substring(0, str.length() - 1);
+        System.out.print(substring);
     }
 }
