@@ -14,5 +14,6 @@ public class Solution {
         }
         String substring = str.substring(0, str.length() - 1);
         System.out.print(substring);
+        System.out.print("substring");
     }
 }
