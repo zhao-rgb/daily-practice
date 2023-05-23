@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
@@ -50,6 +51,15 @@ public class PracticeController {
             dataMap.put(attr.getAttributeCode(),attr.getAttributeValue());
         }
         return ResponseResult.success(dataMap);
+    }
+
+
+    @ApiOperation("测试url")
+    @PostMapping("/url")
+    public ResponseResult testurl(@RequestBody List<CreateAlarmAttrReq> list, HttpServletRequest request){
+        log.info("requestBody:"+ JSONObject.toJSONString(list));
+        String requestedURL = request.getRequestURL().toString();
+        return ResponseResult.success(requestedURL);
     }
 
 }
