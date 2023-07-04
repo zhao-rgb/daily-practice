@@ -85,11 +85,11 @@
             <version>1.9.2</version>
         </dependency>
 
-        <dependency>
-            <groupId>com.unitechs.framework</groupId>
-            <artifactId>uniplat-elasticsearch</artifactId>
-            <version>1.1-SNAPSHOT</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.unitechs.framework</groupId>-->
+<!--            <artifactId>uniplat-elasticsearch</artifactId>-->
+<!--            <version>1.1-SNAPSHOT</version>-->
+<!--        </dependency>-->
 
         <!--excel导出-->
         <dependency>
@@ -110,11 +110,11 @@
             <artifactId>commons-beanutils</artifactId>
             <version>1.9.3</version>
         </dependency>
-        <dependency>
-            <groupId>org.easy</groupId>
-            <artifactId>easy-excel</artifactId>
-            <version>1.0.RELEASE</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.easy</groupId>-->
+<!--            <artifactId>easy-excel</artifactId>-->
+<!--            <version>1.0.RELEASE</version>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
@@ -154,6 +154,13 @@
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>
             <version>5.8.0.M4</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.apache.rocketmq</groupId>
+            <artifactId>rocketmq-client</artifactId>
+            <version>4.9.1</version>
         </dependency>
     </dependencies>
 

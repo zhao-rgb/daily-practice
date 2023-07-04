@@ -2,10 +2,6 @@ package com.zxl.dailypractice.project.controller;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.unitechs.framework.elasticsearch.client.EsTemplate;
-import com.unitechs.framework.elasticsearch.domain.request.QueryDocumentByDslRequest;
-import com.unitechs.framework.elasticsearch.domain.request.QueryDocumentRequest;
-import com.unitechs.framework.elasticsearch.domain.response.QueryDocumentResponse;
 import com.zxl.dailypractice.card.three.february.february27.GetVBASUserDataResp;
 import com.zxl.dailypractice.project.constant.ResourceConstant;
 import com.zxl.dailypractice.project.util.ResponseResult;
@@ -15,8 +11,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.IOUtils;
 import org.apache.poi.hssf.usermodel.*;
 import org.apache.poi.ss.usermodel.Workbook;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,8 +19,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.lang.reflect.Field;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 /**
@@ -38,73 +30,73 @@ import java.util.*;
 @RestController
 @Api(tags = "熟悉ES")
 public class EsController {
-    @Autowired
-    private EsTemplate esTemplate;
+//    @Autowired
+//    private EsTemplate esTemplate;
+//
+//    @ApiOperation("ES查询")
+//    @RequestMapping(value = "/es",method = RequestMethod.POST)
+//    public ResponseResult es() throws IOException {
+//        String dsl = "{\n" +
+//                "  \"query\": {\n" +
+//                "    \"match\": {\n" +
+//                "      \"k_devname\": \"huaweine40\"\n" +
+//                "    }\n" +
+//                "  }\n" +
+//                "}";
+//        QueryDocumentByDslRequest<JSONObject> search =
+//                new QueryDocumentByDslRequest<>("pm_col_dev_*", "", dsl,
+//                        JSONObject.class);
+//        QueryDocumentResponse<JSONObject> jsonObjectQueryDocumentResponse =
+//                esTemplate.queryDocumentByDSL(search);
+//        String jsonString = jsonObjectQueryDocumentResponse.getJsonString();
+//        JSONArray jsonArray = JSONObject.parseObject(jsonString).getJSONObject("hits").getJSONArray("hits");
+//        for (int i = 0; i < jsonArray.size(); i++) {
+//            System.out.println(jsonArray.get(i));
+//            System.out.println(jsonArray.getJSONObject(i).getJSONObject("_source").get("d_memr"));
+//        }
+//        return ResponseResult.success(jsonObjectQueryDocumentResponse);
+//    }
 
-    @ApiOperation("ES查询")
-    @RequestMapping(value = "/es",method = RequestMethod.POST)
-    public ResponseResult es() throws IOException {
-        String dsl = "{\n" +
-                "  \"query\": {\n" +
-                "    \"match\": {\n" +
-                "      \"k_devname\": \"huaweine40\"\n" +
-                "    }\n" +
-                "  }\n" +
-                "}";
-        QueryDocumentByDslRequest<JSONObject> search =
-                new QueryDocumentByDslRequest<>("pm_col_dev_*", "", dsl,
-                        JSONObject.class);
-        QueryDocumentResponse<JSONObject> jsonObjectQueryDocumentResponse =
-                esTemplate.queryDocumentByDSL(search);
-        String jsonString = jsonObjectQueryDocumentResponse.getJsonString();
-        JSONArray jsonArray = JSONObject.parseObject(jsonString).getJSONObject("hits").getJSONArray("hits");
-        for (int i = 0; i < jsonArray.size(); i++) {
-            System.out.println(jsonArray.get(i));
-            System.out.println(jsonArray.getJSONObject(i).getJSONObject("_source").get("d_memr"));
-        }
-        return ResponseResult.success(jsonObjectQueryDocumentResponse);
-    }
-
-    @ApiOperation("ES测试")
-    @RequestMapping(value = "/test/es",method = RequestMethod.POST)
-    public ResponseResult testes() throws Exception{
-        int pageNum = 1;
-        int pageSize = 8;
-        int startNumNew = pageSize * (pageNum-1);
-        int pageSizeNew = pageSize;
-        if(pageNum==1){//第一页时
-            pageSizeNew = pageSize;
-        }else{
-            startNumNew = startNumNew-1;
-        }
-        System.out.println("--------------startNumNew="+startNumNew+",pageSizeNew="+pageSizeNew);
-        LocalDateTime time = LocalDateTime.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
-        String now = time.format(formatter);
-        String indexName = "pm_col_brasippool" + now;
-        String sql = "select * from " + indexName + " limit " + startNumNew + "," + pageSizeNew;
-        log.info("===============sql语句为：" + sql);
-
-        indexName = "am_ala_alarmsummary_*";
-        log.info("esSearchIndex:{}",indexName);
-        QueryDocumentRequest<JSONObject> queryDocumentRequest = new QueryDocumentRequest<JSONObject>(indexName,"_doc",sql,JSONObject.class);
-        QueryDocumentResponse<JSONObject> jsonObjectQueryDocumentResponse = esTemplate.queryDocument(queryDocumentRequest);
-        String data = jsonObjectQueryDocumentResponse.getJsonString();
-        log.info("====================data:" + data);
-        JSONObject object = JSONObject.parseObject(data);
-        JSONObject hits = (JSONObject) object.get("hits");
-        JSONArray array = hits.getJSONArray("hits");
-        if (array != null && array.size() > 0){
-            for (int i = 0;i < array.size();i++){
-                JSONObject source = ((JSONObject) array.get(i)).getJSONObject("_source");
-                if (!source.isEmpty()){
-                    String v4T = source.getString("k_CORRELATION_FLAG");
-                    System.out.println(v4T);
-                }
-            }
-        }
-        return ResponseResult.success(data);
-    }
+//    @ApiOperation("ES测试")
+//    @RequestMapping(value = "/test/es",method = RequestMethod.POST)
+//    public ResponseResult testes() throws Exception{
+//        int pageNum = 1;
+//        int pageSize = 8;
+//        int startNumNew = pageSize * (pageNum-1);
+//        int pageSizeNew = pageSize;
+//        if(pageNum==1){//第一页时
+//            pageSizeNew = pageSize;
+//        }else{
+//            startNumNew = startNumNew-1;
+//        }
+//        System.out.println("--------------startNumNew="+startNumNew+",pageSizeNew="+pageSizeNew);
+//        LocalDateTime time = LocalDateTime.now();
+//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
+//        String now = time.format(formatter);
+//        String indexName = "pm_col_brasippool" + now;
+//        String sql = "select * from " + indexName + " limit " + startNumNew + "," + pageSizeNew;
+//        log.info("===============sql语句为：" + sql);
+//
+//        indexName = "am_ala_alarmsummary_*";
+//        log.info("esSearchIndex:{}",indexName);
+//        QueryDocumentRequest<JSONObject> queryDocumentRequest = new QueryDocumentRequest<JSONObject>(indexName,"_doc",sql,JSONObject.class);
+//        QueryDocumentResponse<JSONObject> jsonObjectQueryDocumentResponse = esTemplate.queryDocument(queryDocumentRequest);
+//        String data = jsonObjectQueryDocumentResponse.getJsonString();
+//        log.info("====================data:" + data);
+//        JSONObject object = JSONObject.parseObject(data);
+//        JSONObject hits = (JSONObject) object.get("hits");
+//        JSONArray array = hits.getJSONArray("hits");
+//        if (array != null && array.size() > 0){
+//            for (int i = 0;i < array.size();i++){
+//                JSONObject source = ((JSONObject) array.get(i)).getJSONObject("_source");
+//                if (!source.isEmpty()){
+//                    String v4T = source.getString("k_CORRELATION_FLAG");
+//                    System.out.println(v4T);
+//                }
+//            }
+//        }
+//        return ResponseResult.success(data);
+//    }
 
 
     @ApiOperation("ES测试1")
@@ -412,8 +404,8 @@ public class EsController {
         }
     }
 
-    @Bean
-    public EsTemplate esTemplate(){
-        return new EsTemplate();
-    }
+//    @Bean
+//    public EsTemplate esTemplate(){
+//        return new EsTemplate();
+//    }
 }

@@ -26,6 +26,7 @@
 * Ctrl+ALT+L 代码格式化,自动排版
 * Tab 多行右移 
 * Shift+Tab 多行左移
+* Ctrl+alt+b 直接跳实现类
 -------
 * Ctrl + Ctrl(按住) + ↓ 多光标选择
 * 选中目标字符，然后Ctrl+shift+alt+j 多光标选择

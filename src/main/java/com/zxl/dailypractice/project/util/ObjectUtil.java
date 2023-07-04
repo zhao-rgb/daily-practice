@@ -1,10 +1,8 @@
 package com.zxl.dailypractice.project.util;
 
-import com.google.gson.*;
 import com.zxl.dailypractice.project.exception.WformException;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.*;
 import java.math.BigDecimal;
 import java.util.*;
 
@@ -94,99 +92,99 @@ public class ObjectUtil {
      * 对象转换成JSON字符串 @gv obj @return
      */
 
-    public static String toJsonStr(Object obj) {
-        Gson gson = new Gson();
-        return gson.toJson(obj);
-    }
-
-    public static JsonObject toJsonObject(File f) throws WformException {
-        JsonObject jsonObject = null;
-        try {
-            InputStream is = new FileInputStream(f);
-            InputStreamReader isr = new InputStreamReader(is);
-            BufferedReader br = new BufferedReader(isr);
-            JsonStreamParser parser = new JsonStreamParser(br);
-            while (parser.hasNext()) {
-                JsonElement element = parser.next();
-                if (element.isJsonArray()) {
-                    jsonObject = element.getAsJsonObject();
-                }
-            }
-        } catch (FileNotFoundException e) {
-
-            throw new WformException("JSON没找到文件!");
-
-        }
-        return jsonObject;
-    }
-
-    /**
-     * 字符串转换成json object
-     *
-     * @param str
-     * @return
-     * @throws WformException
-     */
-    public static JsonObject toJsonObject(String str)
-            throws WformException {
-        JsonObject jsonObject = null;
-        try {
-            JsonStreamParser parser = new JsonStreamParser(str);
-            while (parser.hasNext()) {
-                JsonElement element = parser.next();
-                if (element.isJsonObject()) {
-                    jsonObject = element.getAsJsonObject();
-                }
-            }
-        } catch (Exception e) {
-            throw new WformException("字符串：" + str + " 转换成JsonObject出错");
-        }
-        return jsonObject;
-    }
-
-    public static JsonArray toJsonArray(File f) throws WformException {
-        JsonArray jsonArray = null;
-        try {
-            InputStream is = new FileInputStream(f);
-            InputStreamReader isr = new InputStreamReader(is);
-            BufferedReader br = new BufferedReader(isr);
-            JsonStreamParser parser = new JsonStreamParser(br);
-            while (parser.hasNext()) {
-                JsonElement element = parser.next();
-                if (element.isJsonArray()) {
-                    jsonArray = element.getAsJsonArray();
-                }
-            }
-        } catch (FileNotFoundException e) {
-
-            throw new WformException("JSON没找到文件!");
-
-        }
-        return jsonArray;
-    }
-
-    /**
-     * 字符串转换成json array
-     *
-     * @param str
-     * @return
-     * @throws WformException
-     */
-    public static JsonArray toJsonArray(String str) throws WformException {
-        JsonArray jsonArray = null;
-        try {
-            JsonStreamParser parser = new JsonStreamParser(str);
-            while (parser.hasNext()) {
-                JsonElement element = parser.next();
-                if (element.isJsonArray()) {
-                    jsonArray = element.getAsJsonArray();
-                }
-            }
-        } catch (WformException e) {
-            throw new WformException("字符串：" + str + " 转换成JsonArray出错");
-        }
-        return jsonArray;
-    }
+//    public static String toJsonStr(Object obj) {
+//        Gson gson = new Gson();
+//        return gson.toJson(obj);
+//    }
+//
+//    public static JsonObject toJsonObject(File f) throws WformException {
+//        JsonObject jsonObject = null;
+//        try {
+//            InputStream is = new FileInputStream(f);
+//            InputStreamReader isr = new InputStreamReader(is);
+//            BufferedReader br = new BufferedReader(isr);
+//            JsonStreamParser parser = new JsonStreamParser(br);
+//            while (parser.hasNext()) {
+//                JsonElement element = parser.next();
+//                if (element.isJsonArray()) {
+//                    jsonObject = element.getAsJsonObject();
+//                }
+//            }
+//        } catch (FileNotFoundException e) {
+//
+//            throw new WformException("JSON没找到文件!");
+//
+//        }
+//        return jsonObject;
+//    }
+//
+//    /**
+//     * 字符串转换成json object
+//     *
+//     * @param str
+//     * @return
+//     * @throws WformException
+//     */
+//    public static JsonObject toJsonObject(String str)
+//            throws WformException {
+//        JsonObject jsonObject = null;
+//        try {
+//            JsonStreamParser parser = new JsonStreamParser(str);
+//            while (parser.hasNext()) {
+//                JsonElement element = parser.next();
+//                if (element.isJsonObject()) {
+//                    jsonObject = element.getAsJsonObject();
+//                }
+//            }
+//        } catch (Exception e) {
+//            throw new WformException("字符串：" + str + " 转换成JsonObject出错");
+//        }
+//        return jsonObject;
+//    }
+//
+//    public static JsonArray toJsonArray(File f) throws WformException {
+//        JsonArray jsonArray = null;
+//        try {
+//            InputStream is = new FileInputStream(f);
+//            InputStreamReader isr = new InputStreamReader(is);
+//            BufferedReader br = new BufferedReader(isr);
+//            JsonStreamParser parser = new JsonStreamParser(br);
+//            while (parser.hasNext()) {
+//                JsonElement element = parser.next();
+//                if (element.isJsonArray()) {
+//                    jsonArray = element.getAsJsonArray();
+//                }
+//            }
+//        } catch (FileNotFoundException e) {
+//
+//            throw new WformException("JSON没找到文件!");
+//
+//        }
+//        return jsonArray;
+//    }
+//
+//    /**
+//     * 字符串转换成json array
+//     *
+//     * @param str
+//     * @return
+//     * @throws WformException
+//     */
+//    public static JsonArray toJsonArray(String str) throws WformException {
+//        JsonArray jsonArray = null;
+//        try {
+//            JsonStreamParser parser = new JsonStreamParser(str);
+//            while (parser.hasNext()) {
+//                JsonElement element = parser.next();
+//                if (element.isJsonArray()) {
+//                    jsonArray = element.getAsJsonArray();
+//                }
+//            }
+//        } catch (WformException e) {
+//            throw new WformException("字符串：" + str + " 转换成JsonArray出错");
+//        }
+//        return jsonArray;
+//    }
 
     /*
      * request的值转换为Map @gv obj @return
