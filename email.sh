@@ -2,7 +2,7 @@
 
 git filter-branch --env-filter '
 
-OLD_EMAIL="zhaoxl@unitechs.com"
+OLD_EMAIL="zhaoxiaolong@bangdao-tech.com"
 CORRECT_NAME="zhao-rgb"
 CORRECT_EMAIL="1019916061@qq.com"
 
