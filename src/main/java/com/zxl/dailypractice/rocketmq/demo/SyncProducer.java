@@ -8,26 +8,28 @@ import java.util.concurrent.TimeUnit;
 public class SyncProducer {
     public static void main(String[] args) {
         try {
-            // Create a producer instance
+            // 创建生产者实例
             DefaultMQProducer producer = new DefaultMQProducer("producer_group");
 
-            // Set the nameserver address
-            producer.setNamesrvAddr("81.69.18.228:9876");
+            // 设置Nameserver地址
+            producer.setNamesrvAddr("121.5.129.115:9876");
 
-            // Start the producer
+            // 启动生产者
             producer.start();
 
-            // Create a message
-            Message message = new Message("topic_name", "tag_name", "赵肖龙hhh".getBytes());
+            // 创建一条消息
+            Message message = new Message("hello", "tag_name", "赵肖龙hhh".getBytes());
 
-            // Send the message
-            producer.send(message,10000);
+            // 发送消息
+            producer.send(message, 10000);
 
+            // 休眠 1000 秒（这里可能是为了给足够的时间让消息发送完成）
             TimeUnit.SECONDS.sleep(1000);
-            // Shut down the producer
+
+            // 关闭生产者
             producer.shutdown();
 
-            System.out.println("Message sent successfully!");
+            System.out.println("消息发送成功！");
         } catch (Exception e) {
             e.printStackTrace();
         }

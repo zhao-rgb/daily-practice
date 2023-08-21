@@ -9,27 +9,27 @@ public class Consumer {
 
     public static void main(String[] args) {
         try {
-            // Create a consumer instance
+            // 创建消费者实例
             DefaultMQPushConsumer consumer = new DefaultMQPushConsumer("consumer_group");
 
-            // Set the nameserver address
-            consumer.setNamesrvAddr("81.69.18.228:9876");
+            // 设置Nameserver地址
+            consumer.setNamesrvAddr("121.5.129.115:9876");
 
-            // Subscribe to a topic and tag
-            consumer.subscribe("topic_name", "tag_name");
+            // 订阅一个Topic和标签
+            consumer.subscribe("hello", "tag_name");
 
-            // Set the message listener
+            // 设置消息监听器
             consumer.registerMessageListener((MessageListenerConcurrently) (msgs, context) -> {
                 for (MessageExt msg : msgs) {
-                    System.out.println("Received message: " + new String(msg.getBody()));
+                    System.out.println("接收到消息: " + new String(msg.getBody()));
                 }
                 return ConsumeConcurrentlyStatus.CONSUME_SUCCESS;
             });
 
-            // Start the consumer
+            // 启动消费者
             consumer.start();
 
-            System.out.println("Consumer started. Press Ctrl+C to exit.");
+            System.out.println("消费者已启动。按 Ctrl+C 可退出。");
         } catch (Exception e) {
             e.printStackTrace();
         }
