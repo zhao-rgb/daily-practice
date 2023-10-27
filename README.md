@@ -19,6 +19,7 @@
 * [Java线程](https://github.com/zhao-rgb/daily-practice/blob/main/src/main/java/com/zxl/dailypractice/thread)
 * [自己的测试](https://github.com/zhao-rgb/daily-practice/blob/main/src/main/java/com/zxl/dailypractice/project)
 ## idea快捷键
+* Ctrl+f 查找当前类
 * Ctrl+D 复制一行
 * Ctrl+Y 删除一行
 * Ctrl+P 参数提示
